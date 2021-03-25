@@ -7,6 +7,8 @@ import {
   Pressable,
 } from "react-native";
 
+import config from "../config/config";
+
 function StartScreen({ navigation }) {
   return (
     <ImageBackground
@@ -30,7 +32,7 @@ function StartScreen({ navigation }) {
           })
         }
         style={styles.button}
-        android_ripple={{ color: "#191516" }}
+        android_ripple={{ color: config.START_BUTTON_RIPPLE_COLOR }}
       >
         <Text style={{ alignSelf: "center" }}>Start!</Text>
       </Pressable>
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   button: {
-    backgroundColor: "#35B7C0",
+    backgroundColor: config.START_BUTTON_BG_COLOR,
     borderRadius: 8,
     position: "absolute",
     alignSelf: "center",

@@ -1,4 +1,3 @@
-import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "@react-navigation/stack";
 import MainScreen from "../screens/MainScreen";
 import StartScreen from "../screens/StartScreen";
@@ -12,8 +11,9 @@ export default function Navigation() {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName="Start"
     >
-      <Stack.Screen name="Start" component={StartScreen} initialRouteName />
+      <Stack.Screen name="Start" component={StartScreen} />
       <Stack.Screen name="Main" component={MainScreen} />
     </Stack.Navigator>
   );
