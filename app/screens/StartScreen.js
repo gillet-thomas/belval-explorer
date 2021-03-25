@@ -7,11 +7,9 @@ import {
   Pressable,
 } from "react-native";
 
-function StartScreen(props) {
-  handlePress = () => {
-    console.log("pressed");
-  };
+import config from "../config/config";
 
+function StartScreen({ navigation }) {
   return (
     <ImageBackground
       style={styles.background}
@@ -23,9 +21,18 @@ function StartScreen(props) {
       ></Image>
 
       <Pressable
-        onPress={handlePress}
+        onPress={() =>
+          navigation.reset({
+            index: 0,
+            routes: [
+              {
+                name: "Main",
+              },
+            ],
+          })
+        }
         style={styles.button}
-        android_ripple={{ color: "#191516" }}
+        android_ripple={{ color: config.START_BUTTON_RIPPLE_COLOR }}
       >
         <Text style={{ alignSelf: "center" }}>Start!</Text>
       </Pressable>
@@ -39,12 +46,12 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   button: {
-    backgroundColor: "#35B7C0",
+    backgroundColor: config.START_BUTTON_BG_COLOR,
     borderRadius: 8,
     position: "absolute",
     alignSelf: "center",
     width: "70%",
-    bottom: 50,
+    bottom: 70,
     padding: 10,
   },
   logo: {
