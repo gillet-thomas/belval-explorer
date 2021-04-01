@@ -34,7 +34,7 @@ function StartScreen({ navigation }) {
         style={styles.button}
         android_ripple={{ color: config.START_BUTTON_RIPPLE_COLOR }}
       >
-        <Text style={{ alignSelf: "center" }}>Start!</Text>
+        <Text style={{ alignSelf: "center" }}>Start!!</Text>
       </Pressable>
     </ImageBackground>
   );
