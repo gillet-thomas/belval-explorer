@@ -20,7 +20,7 @@ class MainScreen extends Component {
           transparent = {false}
           visible = {this.state.isVisible}
           onRequestClose = {()=> {
-            Alert.alert("Here modal has been closed (debug)")
+            //Alert.alert("Here modal has been closed (debug)")
           }}>
 
             <Image 
