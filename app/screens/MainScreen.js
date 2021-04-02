@@ -18,10 +18,7 @@ class MainScreen extends Component {
         <Modal 
           animationType = {"slide"}
           transparent = {false}
-          visible = {this.state.isVisible}
-          onRequestClose = {()=> {
-            //Alert.alert("Here modal has been closed (debug)")
-          }}>
+          visible = {this.state.isVisible} >
 
             <Image 
               source = {require('../assets/BuildingBelval.jpg')}

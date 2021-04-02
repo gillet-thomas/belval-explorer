@@ -4,6 +4,6 @@ export default {
   ABOUT_PAGE_BACKGROUND_COLOR: "#35B7C0",
   EMAIL_RAYAN: "Rayan.rafdy@gmail.com",
   EMAIL_HUGO: "Hugo.cossa@hotmail.fr",
-  EMAIL_GILLES: "Gilles' email",
+  EMAIL_GILLES: "Gilchen96@gmail.com",
   EMAIL_THOMAS: "Gillet.thomas43@gmail.com",
 };
