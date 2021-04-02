@@ -40,7 +40,7 @@ class MainScreen extends Component {
           onPress = {()=> {
             this.displayModal(true)
           }}>
-            <Text style = {styles.buttonText}>Waypoints pop up :)</Text>
+            <Text style = {styles.buttonText}>WAYPOINTS</Text>
           </TouchableOpacity>
       </View>
     );
@@ -49,20 +49,20 @@ class MainScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 25,
+    padding: 80,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   button: {
     display: 'flex',
-    height: 60,
-    borderRadius: 6,
+    height: 50,
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    backgroundColor: '#2AC062',
-    shadowColor: '#2AC062',
+    backgroundColor: '#2278FF',
+    shadowColor: '#2278FF',
     shadowOpacity: 0.5,
     shadowOffset: { 
       height: 10, 
@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#FFFFFF',
-    fontSize: 22,
+    fontSize: 25,
   },
   image: {
-    marginTop: 150,
-    marginBottom: 10,
+    marginTop: '30%',
+    marginBottom: '5%',
     width: '100%',
-    height: 350,
+    height: '35%',
   },
   text: {
     fontSize: 24,
