@@ -7,7 +7,7 @@ import firebase from "../config/firebaseConfig";
 
 class MapScreen extends Component {
   state = {
-    isVisible: false
+    isVisible: []
   }
 
   componentDidMount() {
@@ -19,10 +19,13 @@ class MapScreen extends Component {
         snapshot.forEach((entry) => {
           data.push({
             key: entry.key,
-            value: snapshot.child(entry.key).child("coordinates").val()
+            coordinates: snapshot.child(entry.key).child("coordinates").val(),
+            modal: snapshot.child(entry.key).child("modal").val()
           });
+          this.setState({ isVisible: [...this.state.isVisible, { key: entry.key, value: false }] })
         });
         this.setState({ waypoints: data })
+        console.log(this.state.waypoints)
       }
     })
 
@@ -32,8 +35,15 @@ class MapScreen extends Component {
     });
   }
 
-  displayModal(state) {
-    this.setState({ isVisible: state })
+  displayModal(state, componentKey) {
+    var index = this.state.isVisible.findIndex(x => x.key === componentKey);
+    this.setState({
+      isVisible: [
+        ...this.state.isVisible.slice(0, index),
+        Object.assign({}, this.state.isVisible[index], { key: componentKey, value: state }),
+        ...this.state.isVisible.slice(index + 1)
+      ]
+    });
   }
 
   render() {
@@ -47,12 +57,12 @@ class MapScreen extends Component {
           {this.state.waypoints && this.state.waypoints.map((waypoint, index) => (
             <Marker
               key={index}
-              coordinate={waypoint.value}
-              title={waypoint.key}
-              onPress={() => this.displayModal(true)}
+              coordinate={waypoint.coordinates}
+              onPress={() => this.displayModal(true, waypoint.key)}
             >
               <Callout>
-                <WaypointModal isVisible={this.state.isVisible} hideModal={() => this.displayModal(false)} />
+                <WaypointModal isVisible={this.state.isVisible.find(x => x.key === waypoint.key).value}
+                  hideModal={() => this.displayModal(false, waypoint.key)} title={waypoint.key} modal={waypoint.modal} />
               </Callout>
             </Marker>
           ))}
