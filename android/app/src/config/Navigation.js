@@ -1,4 +1,4 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import StartScreen from '../screens/StartScreen';
 import MapScreen from '../screens/MapScreen';
