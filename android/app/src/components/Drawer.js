@@ -31,7 +31,6 @@ export default function Drawer() {
         component={Navigation}
         options={{swipeEnabled: false}}
       />
-      <DrawerNavigator.Screen name="Map" component={Map} />
       <DrawerNavigator.Screen
         name="About"
         component={About}
