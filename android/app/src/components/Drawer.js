@@ -20,6 +20,7 @@ function CustomDrawerContent(props) {
         label="Art"
         style={{
           backgroundColor: 'red',
+          marginTop: 20,
         }}
         itemStyle={{
           icon: ({color}) => (
@@ -30,8 +31,25 @@ function CustomDrawerContent(props) {
         }}
         onPress={() => alert('Toggle Art')}
       />
-      <DrawerItem label="Culture" onPress={() => alert('Toggle Culture')} />
-      <DrawerItem label="Science" onPress={() => alert('Toggle Science')} />
+      <DrawerItem
+        label="Culture"
+        style={{
+          backgroundColor: 'orange',
+          marginTop: 20,
+        }}
+        onPress={() => alert('Toggle Culture')}
+      />
+      <DrawerItem
+        label="Science"
+        style={{
+          backgroundColor: 'lightblue',
+          marginTop: 20,
+          display: 'flex',
+          flexDirection: 'column',
+          alignContent: 'center',
+        }}
+        onPress={() => alert('Toggle Science')}
+      />
     </DrawerContentScrollView>
   );
 }
