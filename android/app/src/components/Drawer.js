@@ -7,35 +7,67 @@ import {
 } from '@react-navigation/drawer';
 import Navigation from '../config/Navigation';
 import About from '../screens/AboutScreen';
-import Map from '../screens/MapScreen';
+import Icon from '../screens/MapScreen';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const DrawerNavigator = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
-      <DrawerItem label="Art" onPress={() => alert('Toggle Art')} />
+      <DrawerItem
+        label="Art"
+        style={{
+          backgroundColor: 'red',
+        }}
+        itemStyle={{
+          icon: ({color}) => (
+            <MaterialCommunityIcons
+              name="map"
+              color={color}></MaterialCommunityIcons>
+          ),
+        }}
+        onPress={() => alert('Toggle Art')}
+      />
       <DrawerItem label="Culture" onPress={() => alert('Toggle Culture')} />
       <DrawerItem label="Science" onPress={() => alert('Toggle Science')} />
     </DrawerContentScrollView>
   );
 }
 
-export default function Drawer() {
+export default function DrawerNavigator() {
   return (
-    <DrawerNavigator.Navigator
+    <Drawer.Navigator
       drawerContent={props => <CustomDrawerContent {...props} />}>
-      <DrawerNavigator.Screen
-        name="Belval Navigator"
+      <Drawer.Screen
+        name="Map"
         component={Navigation}
-        options={{swipeEnabled: false}}
+        options={{
+          swipeEnabled: false,
+          drawerLabel: 'Belval Navigator',
+          drawerIcon: ({color, size}) => (
+            <MaterialCommunityIcons
+              name="google-maps"
+              size={size}
+              color={color}></MaterialCommunityIcons>
+          ),
+        }}
       />
-      <DrawerNavigator.Screen
+      <Drawer.Screen
         name="About"
         component={About}
-        options={{swipeEnabled: true}}
+        options={{
+          swipeEnabled: true,
+          drawerLabel: 'About us',
+          drawerIcon: ({color, size}) => (
+            <MaterialCommunityIcons
+              name="microsoft-teams"
+              size={size}
+              color={color}></MaterialCommunityIcons>
+          ),
+        }}
       />
-    </DrawerNavigator.Navigator>
+    </Drawer.Navigator>
   );
 }
