@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
-import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
+import React, { Component } from 'react';
+import { View, StyleSheet } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import WaypointModal from '../components/Modal';
 import FloatingButton from '../components/FloatingButton';
 
@@ -9,6 +9,9 @@ import firebase from '../config/firebaseConfig';
 class MapScreen extends Component {
   state = {
     isVisible: [],
+    art: true,
+    culture: true,
+    science: true,
   };
 
   componentDidMount() {
@@ -26,15 +29,17 @@ class MapScreen extends Component {
               key: entry.key,
               coordinates: snapshot.child(entry.key).child('coordinates').val(),
               modal: snapshot.child(entry.key).child('modal').val(),
+              title: snapshot.child(entry.key).child('title').val(),
+              category: snapshot.child(entry.key).child('category').val()
             });
             this.setState({
               isVisible: [
                 ...this.state.isVisible,
-                {key: entry.key, value: false},
+                { key: entry.key, value: false },
               ],
             });
           });
-          this.setState({waypoints: data});
+          this.setState({ waypoints: data });
           console.log(this.state.waypoints);
         }
       });
@@ -46,7 +51,7 @@ class MapScreen extends Component {
       .child('initialRegion')
       .get()
       .then(snapshot => {
-        this.setState({initialRegion: snapshot.val()});
+        this.setState({ initialRegion: snapshot.val() });
       });
   }
 
@@ -65,14 +70,11 @@ class MapScreen extends Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          style={styles.map}
-          region={this.state.initialRegion}>
-          {this.state.waypoints &&
-            this.state.waypoints.map((waypoint, index) => (
+    const waypoints = () => {
+      if (this.state.waypoints) {
+        return this.state.waypoints.map((waypoint, index) => {
+          if (this.state[waypoint.category]) {
+            return (
               <Marker
                 key={index}
                 coordinate={waypoint.coordinates}
@@ -84,15 +86,26 @@ class MapScreen extends Component {
                         .value
                     }
                     hideModal={() => this.displayModal(false, waypoint.key)}
-                    title={waypoint.key}
+                    title={waypoint.title}
                     modal={waypoint.modal}
                   />
                 </Callout>
               </Marker>
-            ))}
+            )
+          }
+        })
+      }
+    }
+    return (
+      <View style={styles.container}>
+        <MapView
+          provider={PROVIDER_GOOGLE}
+          style={styles.map}
+          region={this.state.initialRegion}>
+          {waypoints()}
         </MapView>
         <FloatingButton
-          style={{bottom: 725, right: 360}}
+          style={{ top: 20, left: 40 }}
           navigation={this.props.navigation}
         />
       </View>
