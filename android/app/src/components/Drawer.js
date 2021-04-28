@@ -16,6 +16,8 @@ class Drawer extends Component {
   state = {
     drawer: createDrawerNavigator(),
     artStatus: true,
+    cultureStatus: true,
+    scienceStatus: true,
   };
 
   _onPressArt() {
@@ -23,6 +25,22 @@ class Drawer extends Component {
       this.setState({artStatus: false});
     } else {
       this.setState({artStatus: true});
+    }
+  }
+
+  _onPressCulture() {
+    if (this.state.cultureStatus) {
+      this.setState({cultureStatus: false});
+    } else {
+      this.setState({cultureStatus: true});
+    }
+  }
+
+  _onPressScience() {
+    if (this.state.scienceStatus) {
+      this.setState({scienceStatus: false});
+    } else {
+      this.setState({scienceStatus: true});
     }
   }
 
@@ -53,30 +71,31 @@ class Drawer extends Component {
             />
             <DrawerItem
               label="Culture"
-              style={{
-                backgroundColor: 'orange',
-                marginTop: 20,
-              }}
-              onPress={() =>
+              style={
+                this.state.cultureStatus
+                  ? styles.cultureToggledON
+                  : styles.cultureToggledOFF
+              }
+              onPress={() => {
+                this._onPressCulture();
                 GLOBAL.categories.setState({
                   culture: !GLOBAL.categories.state.culture,
-                })
-              }
+                });
+              }}
             />
             <DrawerItem
               label="Science"
-              style={{
-                backgroundColor: 'lightblue',
-                marginTop: 20,
-                display: 'flex',
-                flexDirection: 'column',
-                alignContent: 'center',
-              }}
-              onPress={() =>
+              style={
+                this.state.scienceStatus
+                  ? styles.scienceToggledON
+                  : styles.scienceToggledOFF
+              }
+              onPress={() => {
+                this._onPressScience();
                 GLOBAL.categories.setState({
                   science: !GLOBAL.categories.state.science,
-                })
-              }
+                });
+              }}
             />
           </DrawerContentScrollView>
         )}>
@@ -119,7 +138,24 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   artToggledOFF: {
-    backgroundColor: 'white',
+    backgroundColor: 'lightgrey',
+    opacity: 1,
+    marginTop: 20,
+  },
+  cultureToggledON: {
+    backgroundColor: 'orange',
+    marginTop: 20,
+  },
+  cultureToggledOFF: {
+    backgroundColor: 'lightgrey',
+    marginTop: 20,
+  },
+  scienceToggledON: {
+    backgroundColor: 'lightblue',
+    marginTop: 20,
+  },
+  scienceToggledOFF: {
+    backgroundColor: 'lightgrey',
     marginTop: 20,
   },
 });
