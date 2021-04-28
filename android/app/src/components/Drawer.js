@@ -117,7 +117,7 @@ class Drawer extends Component {
           name="About"
           component={About}
           options={{
-            swipeEnabled: true,
+            swipeEnabled: false,
             drawerLabel: 'About us',
             drawerIcon: ({color, size}) => (
               <MaterialCommunityIcons
