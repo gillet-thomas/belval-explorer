@@ -7,9 +7,8 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Drawer from './Drawer';
 
-export default class FloatingButton extends React.Component {
+export default class DrawerButton extends React.Component {
   render() {
     return (
       <View style={[styles.container, this.props.style]}>

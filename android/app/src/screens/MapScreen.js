@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 import WaypointModal from '../components/Modal';
-import FloatingButton from '../components/FloatingButton';
+import DrawerButton from '../components/DrawerButton';
 
 import firebase from '../config/firebaseConfig';
 
@@ -111,7 +111,7 @@ class MapScreen extends Component {
           region={this.state.initialRegion}>
           {waypoints()}
         </MapView>
-        <FloatingButton
+        <DrawerButton
           style={{top: 20, left: 40}}
           navigation={this.props.navigation}
         />
