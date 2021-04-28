@@ -10,6 +10,8 @@ import About from '../screens/AboutScreen';
 import Icon from '../screens/MapScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import GLOBAL from './global.js'
+
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props) {
@@ -23,13 +25,13 @@ function CustomDrawerContent(props) {
           marginTop: 20,
         }}
         itemStyle={{
-          icon: ({color}) => (
+          icon: ({ color }) => (
             <MaterialCommunityIcons
               name="map"
               color={color}></MaterialCommunityIcons>
           ),
         }}
-        onPress={() => alert('Toggle Art')}
+        onPress={() => GLOBAL.categories.setState({ art: !GLOBAL.categories.state.art })}
       />
       <DrawerItem
         label="Culture"
@@ -37,7 +39,7 @@ function CustomDrawerContent(props) {
           backgroundColor: 'orange',
           marginTop: 20,
         }}
-        onPress={() => alert('Toggle Culture')}
+        onPress={() => GLOBAL.categories.setState({ culture: !GLOBAL.categories.state.culture })}
       />
       <DrawerItem
         label="Science"
@@ -48,7 +50,7 @@ function CustomDrawerContent(props) {
           flexDirection: 'column',
           alignContent: 'center',
         }}
-        onPress={() => alert('Toggle Science')}
+        onPress={() => GLOBAL.categories.setState({ science: !GLOBAL.categories.state.science })}
       />
     </DrawerContentScrollView>
   );
@@ -64,7 +66,7 @@ export default function DrawerNavigator() {
         options={{
           swipeEnabled: false,
           drawerLabel: 'Belval Navigator',
-          drawerIcon: ({color, size}) => (
+          drawerIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               name="google-maps"
               size={size}
@@ -78,7 +80,7 @@ export default function DrawerNavigator() {
         options={{
           swipeEnabled: true,
           drawerLabel: 'About us',
-          drawerIcon: ({color, size}) => (
+          drawerIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               name="microsoft-teams"
               size={size}

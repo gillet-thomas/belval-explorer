@@ -6,15 +6,23 @@ import FloatingButton from '../components/FloatingButton';
 
 import firebase from '../config/firebaseConfig';
 
+import GLOBAL from '../components/global.js'
+
 class MapScreen extends Component {
   state = {
-    isVisible: [],
-    art: true,
-    culture: true,
-    science: true,
+    isVisible: []
   };
 
   componentDidMount() {
+
+    //Define a global state used to (un)toggle categories
+    GLOBAL.categories = this;
+    GLOBAL.categories.setState({
+      art: true,
+      culture: true,
+      science: true,
+    });
+
     //Get the waypoints positions from the database
     firebase
       .database()
@@ -40,7 +48,7 @@ class MapScreen extends Component {
             });
           });
           this.setState({ waypoints: data });
-          console.log(this.state.waypoints);
+          // console.log(this.state.waypoints);
         }
       });
 
