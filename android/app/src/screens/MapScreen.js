@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
+import React, {Component} from 'react';
+import {View, StyleSheet} from 'react-native';
+import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 import WaypointModal from '../components/Modal';
 import FloatingButton from '../components/FloatingButton';
 
 import firebase from '../config/firebaseConfig';
 
-import GLOBAL from '../components/global.js'
+import GLOBAL from '../components/global.js';
 
 class MapScreen extends Component {
   state = {
-    isVisible: []
+    isVisible: [],
   };
 
   componentDidMount() {
-
     //Define a global state used to (un)toggle categories
     GLOBAL.categories = this;
     GLOBAL.categories.setState({
@@ -38,16 +37,16 @@ class MapScreen extends Component {
               coordinates: snapshot.child(entry.key).child('coordinates').val(),
               modal: snapshot.child(entry.key).child('modal').val(),
               title: snapshot.child(entry.key).child('title').val(),
-              category: snapshot.child(entry.key).child('category').val()
+              category: snapshot.child(entry.key).child('category').val(),
             });
             this.setState({
               isVisible: [
                 ...this.state.isVisible,
-                { key: entry.key, value: false },
+                {key: entry.key, value: false},
               ],
             });
           });
-          this.setState({ waypoints: data });
+          this.setState({waypoints: data});
           // console.log(this.state.waypoints);
         }
       });
@@ -59,7 +58,7 @@ class MapScreen extends Component {
       .child('initialRegion')
       .get()
       .then(snapshot => {
-        this.setState({ initialRegion: snapshot.val() });
+        this.setState({initialRegion: snapshot.val()});
       });
   }
 
@@ -99,11 +98,11 @@ class MapScreen extends Component {
                   />
                 </Callout>
               </Marker>
-            )
+            );
           }
-        })
+        });
       }
-    }
+    };
     return (
       <View style={styles.container}>
         <MapView
@@ -113,7 +112,7 @@ class MapScreen extends Component {
           {waypoints()}
         </MapView>
         <FloatingButton
-          style={{ top: 20, left: 40 }}
+          style={{top: 20, left: 40}}
           navigation={this.props.navigation}
         />
       </View>
