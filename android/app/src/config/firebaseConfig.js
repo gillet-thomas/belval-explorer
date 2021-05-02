@@ -2,6 +2,7 @@ import * as firebase from "firebase";
 import "@firebase/auth";
 import "@firebase/firestore";
 
+// Create a constant holding the firebase settings
 const firebaseConfig = {
   apiKey: "AIzaSyC3FlCanXwwVTRHgPzAJtOpJmUnMzxJOvk",
   authDomain: "se-project-b5240.firebaseapp.com",
@@ -15,7 +16,7 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 } else {
-  firebase.app(); // if already initialized, use that one
+  firebase.app(); // if connection already initialized, use that one
 }
 
 export default firebase;

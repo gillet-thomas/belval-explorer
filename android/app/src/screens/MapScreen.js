@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
-import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
+import React, { Component } from 'react';
+import { View, StyleSheet } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import WaypointModal from '../components/Modal';
 import DrawerButton from '../components/DrawerButton';
 
@@ -32,6 +32,8 @@ class MapScreen extends Component {
         if (snapshot.exists()) {
           var data = [];
           snapshot.forEach(entry => {
+
+            //For each waypoint add its data to the data local variable
             data.push({
               key: entry.key,
               coordinates: snapshot.child(entry.key).child('coordinates').val(),
@@ -39,14 +41,16 @@ class MapScreen extends Component {
               title: snapshot.child(entry.key).child('title').val(),
               category: snapshot.child(entry.key).child('category').val(),
             });
+
+            //Define the default visible state of the modal to false
             this.setState({
               isVisible: [
                 ...this.state.isVisible,
-                {key: entry.key, value: false},
+                { key: entry.key, value: false },
               ],
             });
           });
-          this.setState({waypoints: data});
+          this.setState({ waypoints: data });
           // console.log(this.state.waypoints);
         }
       });
@@ -58,12 +62,14 @@ class MapScreen extends Component {
       .child('initialRegion')
       .get()
       .then(snapshot => {
-        this.setState({initialRegion: snapshot.val()});
+        this.setState({ initialRegion: snapshot.val() });
       });
   }
 
   displayModal(state, componentKey) {
     var index = this.state.isVisible.findIndex(x => x.key === componentKey);
+
+    //Update the state by switching the componentKey visibility to state
     this.setState({
       isVisible: [
         ...this.state.isVisible.slice(0, index),
@@ -80,6 +86,8 @@ class MapScreen extends Component {
     const waypoints = () => {
       if (this.state.waypoints) {
         return this.state.waypoints.map((waypoint, index) => {
+
+          //If the waypoint category is toggled
           if (this.state[waypoint.category]) {
             return (
               <Marker
@@ -112,7 +120,7 @@ class MapScreen extends Component {
           {waypoints()}
         </MapView>
         <DrawerButton
-          style={{top: 20, left: 40}}
+          style={{ top: 20, left: 40 }}
           navigation={this.props.navigation}
         />
       </View>

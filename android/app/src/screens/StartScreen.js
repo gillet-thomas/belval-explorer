@@ -20,6 +20,7 @@ function StartScreen({ navigation }) {
         source={require("../assets/esch2022.jpg")}
       ></Image>
 
+      {/* When start button pressed, remove this page from stack navigator and go to main page */}
       <Pressable
         onPress={() =>
           navigation.reset({
