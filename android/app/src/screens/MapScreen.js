@@ -22,8 +22,8 @@ class MapScreen extends Component {
       coordinate: new AnimatedRegion({
         latitude: LATITUDE,
         longitude: LONGITUDE,
-        latitudeDelta: 0,
-        longitudeDelta: 0
+        latitudeDelta: 0.0,
+        longitudeDelta: 0.0
       })
     };
   }
@@ -118,8 +118,8 @@ class MapScreen extends Component {
   }
 
   getMapRegion = () => ({
-    latitude: this.state.latitude,
-    longitude: this.state.longitude,
+    latitude: parseFloat(this.state.latitude),
+    longitude: parseFloat(this.state.longitude),
     latitudeDelta: LATITUDE_DELTA,
     longitudeDelta: LONGITUDE_DELTA
   });
