@@ -1,19 +1,71 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
-import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE, Marker, AnimatedRegion, Callout} from 'react-native-maps';
 import WaypointModal from '../components/Modal';
 import DrawerButton from '../components/DrawerButton';
 
 import firebase from '../config/firebaseConfig';
-
+import Geolocation from '@react-native-community/geolocation';
 import GLOBAL from '../components/global.js';
 
+const LATITUDE_DELTA = 0.009;
+const LONGITUDE_DELTA = 0.009;
+const LATITUDE = 37.78825;
+const LONGITUDE = -122.4324;
+
 class MapScreen extends Component {
-  state = {
-    isVisible: [],
-  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      coordinate: new AnimatedRegion({
+        latitude: LATITUDE,
+        longitude: LONGITUDE,
+        latitudeDelta: 0,
+        longitudeDelta: 0
+      })
+    };
+  }
 
   componentDidMount() {
+
+    const { coordinate } = this.state;
+
+    this.watchID = Geolocation.watchPosition(
+      position => {
+        const { latitude, longitude } = position.coords;
+
+        const newCoordinate = {
+          latitude,
+          longitude
+        };
+
+        if (Platform.OS === "android") {
+          if (this.marker) {
+            this.marker._component.animateMarkerToCoordinate(
+              newCoordinate,
+              500
+            );
+          }
+        } else {
+          coordinate.timing(newCoordinate).start();
+        }
+
+        this.setState({
+          latitude,
+          longitude,
+        });
+      },
+      error => console.log(error),
+      {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 1000,
+        distanceFilter: 10
+      }
+    );
+
     //Define a global state used to (un)toggle categories
     GLOBAL.categories = this;
     GLOBAL.categories.setState({
@@ -61,6 +113,16 @@ class MapScreen extends Component {
         this.setState({initialRegion: snapshot.val()});
       });
   }
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
+
+  getMapRegion = () => ({
+    latitude: this.state.latitude,
+    longitude: this.state.longitude,
+    latitudeDelta: LATITUDE_DELTA,
+    longitudeDelta: LONGITUDE_DELTA
+  });
 
   displayModal(state, componentKey) {
     var index = this.state.isVisible.findIndex(x => x.key === componentKey);
@@ -108,7 +170,11 @@ class MapScreen extends Component {
         <MapView
           provider={PROVIDER_GOOGLE}
           style={styles.map}
-          region={this.state.initialRegion}>
+          showUserLocation
+          followUserLocation
+          loadingEnabled
+          region={this.getMapRegion()}
+        >
           {waypoints()}
         </MapView>
         <DrawerButton
