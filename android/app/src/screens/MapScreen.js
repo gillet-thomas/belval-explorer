@@ -1,6 +1,5 @@
-/* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
-import { Platform, View, StyleSheet, Alert } from 'react-native';
+import { Platform, View, StyleSheet, Image } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker, AnimatedRegion, Callout } from 'react-native-maps';
 import WaypointModal from '../components/Modal';
 import DrawerButton from '../components/DrawerButton';
@@ -10,8 +9,8 @@ import GLOBAL from '../components/global.js';
 
 navigator.geolocation = require('@react-native-community/geolocation');
 
-const LATITUDE_DELTA = 0.009;
-const LONGITUDE_DELTA = 0.009;
+const LATITUDE_DELTA = 0.007;
+const LONGITUDE_DELTA = 0.007;
 const LATITUDE = 37.78825;
 const LONGITUDE = -122.4324;
 
@@ -21,11 +20,11 @@ class MapScreen extends Component {
     super(props);
 
     this.state = {
-      latitude: 0.0,
-      longitude: 0.0,
+      latitude: LATITUDE,
+      longitude: LONGITUDE,
       coordinate: new AnimatedRegion({
-        latitude: 0.0,
-        longitude: 0.0,
+        latitude: LATITUDE,
+        longitude: LONGITUDE,
         latitudeDelta: 0.0,
         longitudeDelta: 0.0,
       }),
@@ -33,59 +32,22 @@ class MapScreen extends Component {
   }
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-
-        console.log("lat ", this.state.latitude)
-        console.log("long ", this.state.longitude)
-        this.state.latitude = parseFloat(position.coords.latitude);
-        this.state.longitude = parseFloat(position.coords.longitude);
-        console.log("lat ", this.state.latitude)
-        console.log("long ", this.state.longitude)
-        // this.state.coordinate.latitude = this.state.latitude;
-        // this.state.coordinate.longitude = this.state.longitude;
-        // const location = position.coords.latitude;
-        // this.setState({ location });
-        // console.log(this.state.location)
-        // console.log("lat ", this.state.location.latitude)
-        // console.log("long ", this.state.location.longitude)
-      },
-      error => {
-        Alert.alert(error.message),
-          { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-      }
-    );
-
     this.watchID = navigator.geolocation.watchPosition(
       position => {
-        const { coordinate, routeCoordinates, distanceTravelled } = this.state;
+        const { coordinate } = this.state;
         const { latitude, longitude } = position.coords;
+        const newCoordinate = { latitude, longitude };
 
-        const newCoordinate = {
-          latitude,
-          longitude
-        };
         if (Platform.OS === "android") {
           if (this.marker) {
-            this.marker._component.animateMarkerToCoordinate(
-              newCoordinate,
-              500
-            );
+            this.marker.animateMarkerToCoordinate(newCoordinate, 500);
           }
         } else {
           coordinate.timing(newCoordinate).start();
         }
-        this.setState({
-          latitude,
-          longitude,
-          routeCoordinates: routeCoordinates.concat([newCoordinate]),
-          distanceTravelled:
-            distanceTravelled + this.calcDistance(newCoordinate),
-          prevLatLng: newCoordinate
-        });
+        this.setState({ latitude, longitude });
       },
-      error => console.log(error),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      error => console.log(error), { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
 
     //Define a global state used to (un)toggle categories
@@ -163,8 +125,7 @@ class MapScreen extends Component {
                 <Callout>
                   <WaypointModal
                     isVisible={
-                      this.state.isVisible.find(x => x.key === waypoint.key)
-                        .value
+                      this.state.isVisible.find(x => x.key === waypoint.key).value
                     }
                     hideModal={() => this.displayModal(false, waypoint.key)}
                     title={waypoint.title}
@@ -189,11 +150,11 @@ class MapScreen extends Component {
         >
           {waypoints()}
           <Marker.Animated
-            ref={marker => {
-              this.marker = marker;
-            }}
+            ref={marker => { this.marker = marker; }}
             coordinate={this.state.coordinate}
-          />
+          >
+            <Image source={{ uri: 'custom_pin' }} style={{ height: 15, width: 15 }} />
+          </Marker.Animated>
         </MapView>
         <DrawerButton
           style={{ top: 20, left: 40 }}
