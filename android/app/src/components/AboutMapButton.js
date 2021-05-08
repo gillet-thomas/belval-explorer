@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
     shadowOffset: {height: 10},
   },
   menu: {
-    backgroundColor: 'darkred',
+    backgroundColor: '#474747',
   },
 });

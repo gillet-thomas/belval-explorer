@@ -57,13 +57,6 @@ class Drawer extends Component {
                   ? styles.artToggledON
                   : styles.artToggledOFF
               }
-              itemStyle={{
-                icon: ({color}) => (
-                  <MaterialCommunityIcons
-                    name="map"
-                    color={color}></MaterialCommunityIcons>
-                ),
-              }}
               onPress={() => {
                 this._onPressArt();
                 GLOBAL.categories.setState({art: !GLOBAL.categories.state.art});
@@ -134,7 +127,7 @@ class Drawer extends Component {
 
 const styles = StyleSheet.create({
   artToggledON: {
-    backgroundColor: 'red',
+    backgroundColor: '#F67280',
     marginTop: 20,
   },
   artToggledOFF: {
@@ -143,7 +136,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   cultureToggledON: {
-    backgroundColor: 'orange',
+    backgroundColor: '#C06C84',
     marginTop: 20,
   },
   cultureToggledOFF: {

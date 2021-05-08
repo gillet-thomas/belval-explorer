@@ -15,8 +15,7 @@ class AboutScreen extends Component {
           the beautiful campus of the University of Luxembourg through this app.
         </Text>
         <Text style={styles.contact}>
-          May you have any question or remark please do not hesitate to contact
-          us
+          If you have any questions, please find our email addresses below.
         </Text>
         <Text style={{fontWeight: 'bold'}}>
           {'\u2022 ' + config.EMAIL_RAYAN}
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
     width: '80%',
     paddingBottom: 30,
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   background: {
     flex: 1,
@@ -53,16 +52,18 @@ const styles = StyleSheet.create({
     backgroundColor: config.ABOUT_PAGE_BACKGROUND_COLOR,
   },
   contact: {
-    width: '85%',
+    width: '80%',
     fontSize: 18,
     textAlign: 'center',
     paddingBottom: 5,
   },
   title: {
     fontSize: 30,
-    textDecorationLine: 'underline',
+    color: '#474747',
+    fontFamily: 'Arial',
     fontWeight: 'bold',
     paddingBottom: 10,
+    textAlign: 'left',
   },
 });
 
