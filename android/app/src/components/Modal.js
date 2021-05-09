@@ -1,26 +1,72 @@
-import React, { Component } from 'react';
-import { Text, StyleSheet, Image, Modal } from 'react-native';
+/* eslint-disable prettier/prettier */
+import React, { Component } from "react";
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableHighlight,
+  Image,
+  Modal,
+} from "react-native";
 
 export default class MapScreen extends Component {
+  state = {
+    bgColor1: '#68a0cf',
+    bgColor2: '#68a0cf',
+    bgColor3: '#68a0cf'
+  };
+
+  checkValidity(userInput) {
+    console.log(userInput)
+    this.setState({ ["bgColor" + this.props.modal.correctAnswer]: "green" });
+    if (this.props.modal.correctAnswer !== userInput) {
+      this.setState({ ["bgColor" + userInput]: "red" });
+    }
+  }
+
   render() {
     return (
       <Modal
         animationType={'slide'}
         transparent={false}
         visible={this.props.isVisible}
-        style={styles.container}>
+        style={styles.container} >
 
         <Text style={styles.title}>{this.props.title}</Text>
 
-        <Image
-          source={require('../assets/BuildingBelval.jpg')}
-          style={styles.image}
-        />
+        <Image source={require("../assets/BuildingBelval.jpg")} style={styles.image} />
 
-        <Text>Question: {this.props.modal.question}</Text>
-        <Text>Answers: {this.props.modal.answers}</Text>
-        <Text>Right answer: {this.props.modal.correctAnswer}</Text>
-        <Text>Information: {this.props.modal.information}</Text>
+        <TouchableHighlight activeOpacity={0.9} style={styles.appButtonContainer} >
+          <Text style={styles.appButtonText}>
+            {this.props.modal.question}
+          </Text>
+        </TouchableHighlight>
+
+        <TouchableOpacity activeOpacity={0.9} style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor1 }]}
+          onPress={() => { this.checkValidity(1); }}
+        >
+          <Text style={styles.appButtonTextAnswer}>
+            {this.props.modal.answers[1]}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={0.9} style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor2 }]}
+          onPress={() => { this.checkValidity(2); }}
+        >
+          <Text style={styles.appButtonTextAnswer}>
+            {this.props.modal.answers[2]}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={0.9} style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor3 }]}
+          onPress={() => { this.checkValidity(3); }}
+        >
+          <Text style={styles.appButtonTextAnswer}>
+            {this.props.modal.answers[3]}
+          </Text>
+        </TouchableOpacity>
+
+
 
         <Text style={styles.closeText} onPress={this.props.hideModal}>Close Modal</Text>
 
@@ -30,31 +76,92 @@ export default class MapScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  image: {
-    marginTop: '20%',
-    marginBottom: '5%',
-    width: '100%',
-    height: '35%',
+  container: {
+    padding: 50,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  text: {
+  button: {
+    display: "flex",
+    height: 50,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    backgroundColor: "#2278FF",
+    shadowColor: "#2278FF",
+    shadowOpacity: 0.5,
+    shadowOffset: {
+      height: 10,
+      width: 0,
+    },
+    shadowRadius: 25,
+  },
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 25,
+  },
+  image: {
+    marginTop: "5%",
+    marginBottom: "30%",
+    width: "100%",
+    height: "35%",
+  },
+  question: {
     fontSize: 24,
-    marginBottom: 30,
+    marginBottom: "0%",
     padding: 40,
   },
   closeText: {
-    fontSize: 24,
-    color: '#00479e',
-    textAlign: 'center',
+    fontSize: 15,
+    color: "#00479e",
+    textAlign: "center",
+    marginTop: "5%",
+  },
+  appButtonContainer: {
+    elevation: 30,
+    backgroundColor: "#009688",
+    borderRadius: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    textAlign: "center",
+    padding: 30,
+    marginTop: -80,
+    marginLeft: 40,
+    marginRight: 40,
+  },
+  buttonAnswer: {
+    elevation: 30,
+    borderRadius: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    textAlign: "center",
+    padding: 30,
+    marginTop: 20,
+    marginLeft: 100,
+    marginRight: 100,
+    borderColor: "black",
+  },
+  appButtonText: {
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase",
+  },
+  appButtonTextAnswer: {
+    fontSize: 20,
+    color: "#000000",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase",
   },
   title: {
-    marginTop: '10%',
+    marginTop: '5%',
     textAlign: 'center',
     fontSize: 24,
     fontWeight: "bold",
     textDecorationLine: 'underline'
   },
-  container: {
-    flex: 1,
-    alignContent: "center",
-  }
 });
