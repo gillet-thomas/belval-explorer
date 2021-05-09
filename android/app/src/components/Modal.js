@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { Component } from "react";
 import {
   Text,
@@ -17,8 +16,10 @@ export default class MapScreen extends Component {
   };
 
   checkValidity(userInput) {
-    console.log(userInput)
+    //Display correct answer in green
     this.setState({ ["bgColor" + this.props.modal.correctAnswer]: "green" });
+
+    //If the user was wrong display his answer in red
     if (this.props.modal.correctAnswer !== userInput) {
       this.setState({ ["bgColor" + userInput]: "red" });
     }
@@ -66,10 +67,7 @@ export default class MapScreen extends Component {
           </Text>
         </TouchableOpacity>
 
-
-
         <Text style={styles.closeText} onPress={this.props.hideModal}>Close Modal</Text>
-
       </Modal>
     );
   }
