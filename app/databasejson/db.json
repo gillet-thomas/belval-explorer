@@ -1,0 +1,45 @@
+{
+    "initialRegion" : {
+      "latitude" : 49.503271,
+      "latitudeDelta" : 0.005,
+      "longitude" : 5.948635,
+      "longitudeDelta" : 0.004
+    },
+    "waypoints" : [ {
+      "coordinates" : {
+        "latitude" : 49.504021,
+        "longitude" : 5.95006
+      },
+      "modal" : {
+        "answers" : [ null, "2", "3", "4" ],
+        "correctAnswer" : 2,
+        "information" : "MSA has 20 classrooms",
+        "question" : "Number of floors in MSA ?"
+      },
+      "title" : "MSA"
+    }, {
+      "coordinates" : {
+        "latitude" : 49.502371,
+        "longitude" : 5.947752
+      },
+      "modal" : {
+        "answers" : [ null, "500", "1000", "1500" ],
+        "correctAnswer" : 3,
+        "information" : "LLC was created in 2010",
+        "question" : "Number of books in LLC ?"
+      },
+      "title" : "LLC"
+    }, {
+      "coordinates" : {
+        "latitude" : 49.502462,
+        "longitude" : 5.949194
+      },
+      "modal" : {
+        "answers" : [ null, "10", "20", "30" ],
+        "correctAnswer" : 1,
+        "information" : "Every year 3545 startups are created....",
+        "question" : "How many startups in techno port ?"
+      },
+      "title" : "TechnoPort"
+    } ]
+  }
