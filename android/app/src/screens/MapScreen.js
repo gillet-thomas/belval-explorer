@@ -82,6 +82,23 @@ class MapScreen extends Component {
     });
   }
 
+  markerColor(category) {
+    switch (category) {
+      case "art":
+        return "red";
+        break;
+      case "culture":
+        return "orange";
+        break;
+      case "science":
+        return "lightblue";
+        break;
+      default:
+        return "#000000";
+        break;
+    }
+  }
+
   render() {
     const waypoints = () => {
       if (this.state.waypoints) {
@@ -92,14 +109,12 @@ class MapScreen extends Component {
             return (
               <Marker
                 key={index}
+                pinColor={this.markerColor(waypoint.category)}
                 coordinate={waypoint.coordinates}
                 onPress={() => this.displayModal(true, waypoint.key)}>
                 <Callout>
                   <WaypointModal
-                    isVisible={
-                      this.state.isVisible.find(x => x.key === waypoint.key)
-                        .value
-                    }
+                    isVisible={this.state.isVisible.find(x => x.key === waypoint.key).value}
                     hideModal={() => this.displayModal(false, waypoint.key)}
                     title={waypoint.title}
                     modal={waypoint.modal}
