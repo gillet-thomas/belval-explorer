@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   ImageBackground,
@@ -7,38 +7,61 @@ import {
   Pressable,
 } from "react-native";
 
+import firebase from '../config/firebaseConfig';
 import config from "../config/config";
 
-function StartScreen({ navigation }) {
-  return (
-    <ImageBackground
-      style={styles.background}
-      source={require("../assets/belval.jpg")}
-    >
-      <Image
-        style={styles.logo}
-        source={require("../assets/esch2022.jpg")}
-      ></Image>
+class StartScreen extends Component {
+  componentDidMount() {
+    firebase
+      .database()
+      .ref()
+      .child('quotes')
+      .get()
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          var data = [];
+          snapshot.forEach(entry => { data.push(entry) });
+          this.setState({ quotes: data });
 
-      {/* When start button pressed, remove this page from stack navigator and go to main page */}
-      <Pressable
-        onPress={() =>
-          navigation.reset({
-            index: 0,
-            routes: [
-              {
-                name: "Main",
-              },
-            ],
-          })
+          const quotesNumber = this.state.quotes.length
+          const randomQuote = Math.floor(Math.random() * quotesNumber)
+          console.log(this.state.quotes[randomQuote])
         }
-        style={styles.button}
-        android_ripple={{ color: config.START_BUTTON_RIPPLE_COLOR }}
+      });
+  }
+
+  render() {
+    const { navigation } = this.props;
+    return (
+      <ImageBackground
+        style={styles.background}
+        source={require("../assets/belval.jpg")}
       >
-        <Text style={{ alignSelf: "center" }}>Start!!</Text>
-      </Pressable>
-    </ImageBackground>
-  );
+        <Image
+          style={styles.logo}
+          source={require("../assets/esch2022.jpg")}
+        ></Image>
+
+        {/* When start button pressed, remove this page from stack navigator and go to main page */}
+        <Pressable
+          onPress={() =>
+            navigation.reset({
+              index: 0,
+              routes: [
+                {
+                  name: "Main",
+                },
+              ],
+            })
+          }
+          style={styles.button}
+          android_ripple={{ color: config.START_BUTTON_RIPPLE_COLOR }}
+        >
+          <Text style={{ alignSelf: "center" }}>Start!!</Text>
+        </Pressable>
+      </ImageBackground>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
