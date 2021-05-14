@@ -1,5 +1,5 @@
 export default {
-  START_BUTTON_BG_COLOR: "#35B7C0",
+  START_BUTTON_BG_COLOR: "black",
   START_BUTTON_RIPPLE_COLOR: "#191516",
   ABOUT_PAGE_BACKGROUND_COLOR: "#35B7C0",
   EMAIL_RAYAN: "Rayan.rafdy@gmail.com",

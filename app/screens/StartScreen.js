@@ -13,13 +13,8 @@ function StartScreen({ navigation }) {
   return (
     <ImageBackground
       style={styles.background}
-      source={require("../assets/belval.jpg")}
+      source={require("../assets/MainScreenBackground.jpg")}
     >
-      <Image
-        style={styles.logo}
-        source={require("../assets/esch2022.jpg")}
-      ></Image>
-
       <Pressable
         onPress={() =>
           navigation.reset({
@@ -34,8 +29,11 @@ function StartScreen({ navigation }) {
         style={styles.button}
         android_ripple={{ color: config.START_BUTTON_RIPPLE_COLOR }}
       >
-        <Text style={{ alignSelf: "center" }}>Start!!</Text>
+        <Text style={styles.textButton}>Travel</Text>
       </Pressable>
+      <Text style={styles.introduction}>
+        Catch phrase
+      </Text>
     </ImageBackground>
   );
 }
@@ -44,19 +42,36 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     alignContent: "center",
+    width: "100%",
   },
   button: {
     backgroundColor: config.START_BUTTON_BG_COLOR,
-    borderRadius: 8,
+    borderRadius: 20,
     position: "absolute",
     alignSelf: "center",
-    width: "70%",
-    bottom: 70,
-    padding: 10,
+    width: "50%",
+    bottom: "16%",
+    padding: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    borderWidth: 2,
+    borderColor: "#ffff",
   },
-  logo: {
-    height: "33%",
-    width: "100%",
+  textButton: {
+    alignSelf: "center",
+    color: "#ffff",
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+  introduction: {
+    alignContent: "center",
+    justifyContent: "center",
+    color: "white",
+    justifyContent: "center",
+    alignContent: "center",
+    paddingHorizontal: 100,
+    paddingVertical: 500,
+    fontSize: 50,
   },
 });
 

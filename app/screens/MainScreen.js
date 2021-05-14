@@ -8,6 +8,7 @@ import {
   Image,
   Modal,
   Button,
+  Alert,
 } from "react-native";
 
 class MainScreen extends Component {
@@ -23,6 +24,26 @@ class MainScreen extends Component {
     },
     answered: false,
   };
+
+  createPopUp(information) {
+    Alert.alert(
+      "Did you know ?",
+      information,
+      [
+        {
+          text: "Close",
+          style: "Close",
+        },
+      ],
+      {
+        cancelable: true,
+        onDismiss: () =>
+          Alert.alert(
+            "This alert was dismissed by tapping outside of the alert dialog."
+          ),
+      }
+    );
+  }
 
   checkValidity(userInput) {
     if (this.state.waypoints != null) {
@@ -69,7 +90,8 @@ class MainScreen extends Component {
             activeOpacity={0.9}
             style={styles.buttonAnswer}
             onPress={() => {
-              this.checkValidity (this.state.waypoints.answers[1]);
+              this.checkValidity(this.state.waypoints.answers[1]);
+              this.createPopUp(this.state.waypoints.information);
             }}
           >
             <Text style={styles.appButtonTextAnswer}>
@@ -82,6 +104,7 @@ class MainScreen extends Component {
             style={styles.buttonAnswer}
             onPress={() => {
               this.checkValidity(this.state.waypoints.answers[2]);
+              this.createPopUp(this.state.waypoints.information);
             }}
           >
             <Text style={styles.appButtonTextAnswer}>
@@ -94,6 +117,7 @@ class MainScreen extends Component {
             style={styles.buttonAnswer}
             onPress={() => {
               this.checkValidity(this.state.waypoints.answers[3]);
+              this.createPopUp(this.state.waypoints.information);
             }}
           >
             <Text style={styles.appButtonTextAnswer}>
