@@ -6,22 +6,33 @@ import {
   TouchableHighlight,
   Image,
   Modal,
+  Alert
 } from "react-native";
 
 export default class MapScreen extends Component {
   state = {
     bgColor1: '#68a0cf',
     bgColor2: '#68a0cf',
-    bgColor3: '#68a0cf'
+    bgColor3: '#68a0cf',
+    answeredSubmitted: false
   };
 
-  checkValidity(userInput) {
-    //Display correct answer in green
-    this.setState({ ["bgColor" + this.props.modal.correctAnswer]: "green" });
+  displayInformation() {
+    Alert.alert(
+      "Did you know ?", this.props.modal.information, [{ text: "Close", style: "Close", }]
+    );
+  }
 
-    //If the user was wrong display his answer in red
-    if (this.props.modal.correctAnswer !== userInput) {
-      this.setState({ ["bgColor" + userInput]: "red" });
+  checkValidity(userInput) {
+    if (this.state.answeredSubmitted == false) {
+      //Display correct answer in green
+      this.setState({ ["bgColor" + this.props.modal.correctAnswer]: "green" });
+
+      //If the user was wrong display his answer in red
+      if (this.props.modal.correctAnswer !== userInput) {
+        this.setState({ ["bgColor" + userInput]: "red" });
+      }
+      this.state.answeredSubmitted = true;
     }
   }
 
@@ -44,7 +55,7 @@ export default class MapScreen extends Component {
         </TouchableHighlight>
 
         <TouchableOpacity activeOpacity={0.9} style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor1 }]}
-          onPress={() => { this.checkValidity(1); }}
+          onPress={() => { this.checkValidity(1); this.displayInformation(); }}
         >
           <Text style={styles.appButtonTextAnswer}>
             {this.props.modal.answers[1]}
@@ -52,7 +63,7 @@ export default class MapScreen extends Component {
         </TouchableOpacity>
 
         <TouchableOpacity activeOpacity={0.9} style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor2 }]}
-          onPress={() => { this.checkValidity(2); }}
+          onPress={() => { this.checkValidity(2); this.displayInformation(); }}
         >
           <Text style={styles.appButtonTextAnswer}>
             {this.props.modal.answers[2]}
@@ -60,14 +71,14 @@ export default class MapScreen extends Component {
         </TouchableOpacity>
 
         <TouchableOpacity activeOpacity={0.9} style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor3 }]}
-          onPress={() => { this.checkValidity(3); }}
+          onPress={() => { this.checkValidity(3); this.displayInformation(); }}
         >
           <Text style={styles.appButtonTextAnswer}>
             {this.props.modal.answers[3]}
           </Text>
         </TouchableOpacity>
 
-        <Text style={styles.closeText} onPress={this.props.hideModal}>Close Modal</Text>
+        <Text style={styles.closeText} onPress={this.props.hideModal}>Exit</Text>
       </Modal>
     );
   }
@@ -112,10 +123,11 @@ const styles = StyleSheet.create({
     padding: 40,
   },
   closeText: {
-    fontSize: 15,
+    fontSize: 18,
     color: "#00479e",
     textAlign: "center",
     marginTop: "5%",
+    fontWeight: "bold",
   },
   appButtonContainer: {
     elevation: 30,
