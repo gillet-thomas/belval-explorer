@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
 import { Platform, View, StyleSheet, Image } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker, AnimatedRegion, Callout } from 'react-native-maps';
@@ -5,14 +6,14 @@ import WaypointModal from '../components/Modal';
 import DrawerButton from '../components/DrawerButton';
 
 import firebase from '../config/firebaseConfig';
-import GLOBAL from '../components/global.js';
+import GLOBAL from '../config/global.js';
 
 navigator.geolocation = require('@react-native-community/geolocation');
 
 const LATITUDE_DELTA = 0.007;
 const LONGITUDE_DELTA = 0.007;
-const LATITUDE = 37.78825;
-const LONGITUDE = -122.4324;
+const LATITUDE = 49.503271;
+const LONGITUDE = 5.948635;
 
 class MapScreen extends Component {
 
@@ -20,6 +21,7 @@ class MapScreen extends Component {
     super(props);
 
     this.state = {
+      isVisible: [],
       latitude: LATITUDE,
       longitude: LONGITUDE,
       coordinate: new AnimatedRegion({
@@ -32,23 +34,23 @@ class MapScreen extends Component {
   }
 
   componentDidMount() {
-    this.watchID = navigator.geolocation.watchPosition(
-      position => {
-        const { coordinate } = this.state;
-        const { latitude, longitude } = position.coords;
-        const newCoordinate = { latitude, longitude };
+    // this.watchID = navigator.geolocation.watchPosition(
+    //   position => {
+    //     const { coordinate } = this.state;
+    //     const { latitude, longitude } = position.coords;
+    //     const newCoordinate = { latitude, longitude };
 
-        if (Platform.OS === "android") {
-          if (this.marker) {
-            this.marker.animateMarkerToCoordinate(newCoordinate, 500);
-          }
-        } else {
-          coordinate.timing(newCoordinate).start();
-        }
-        this.setState({ latitude, longitude });
-      },
-      error => console.log(error), { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
+    //     if (Platform.OS === "android") {
+    //       if (this.marker) {
+    //         this.marker.animateMarkerToCoordinate(newCoordinate, 500);
+    //       }
+    //     } else {
+    //       coordinate.timing(newCoordinate).start();
+    //     }
+    //     this.setState({ latitude, longitude });
+    //   },
+    //   error => console.log(error), { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    // );
 
     //Define a global state used to (un)toggle categories
     GLOBAL.categories = this;

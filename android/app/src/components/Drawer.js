@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -8,9 +8,10 @@ import {
 import Navigation from '../config/Navigation';
 import About from '../screens/AboutScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import GLOBAL from './global.js';
+import GLOBAL from '../config/global.js';
+
 
 class Drawer extends Component {
   state = {
@@ -22,25 +23,25 @@ class Drawer extends Component {
 
   _onPressArt() {
     if (this.state.artStatus) {
-      this.setState({artStatus: false});
+      this.setState({ artStatus: false });
     } else {
-      this.setState({artStatus: true});
+      this.setState({ artStatus: true });
     }
   }
 
   _onPressCulture() {
     if (this.state.cultureStatus) {
-      this.setState({cultureStatus: false});
+      this.setState({ cultureStatus: false });
     } else {
-      this.setState({cultureStatus: true});
+      this.setState({ cultureStatus: true });
     }
   }
 
   _onPressScience() {
     if (this.state.scienceStatus) {
-      this.setState({scienceStatus: false});
+      this.setState({ scienceStatus: false });
     } else {
-      this.setState({scienceStatus: true});
+      this.setState({ scienceStatus: true });
     }
   }
 
@@ -59,7 +60,7 @@ class Drawer extends Component {
               }
               onPress={() => {
                 this._onPressArt();
-                GLOBAL.categories.setState({art: !GLOBAL.categories.state.art});
+                GLOBAL.categories.setState({ art: !GLOBAL.categories.state.art });
               }}
             />
             <DrawerItem
@@ -98,7 +99,7 @@ class Drawer extends Component {
           options={{
             swipeEnabled: false,
             drawerLabel: 'Belval Navigator',
-            drawerIcon: ({color, size}) => (
+            drawerIcon: ({ color, size }) => (
               <MaterialCommunityIcons
                 name="google-maps"
                 size={size}
@@ -112,7 +113,7 @@ class Drawer extends Component {
           options={{
             swipeEnabled: false,
             drawerLabel: 'About us',
-            drawerIcon: ({color, size}) => (
+            drawerIcon: ({ color, size }) => (
               <MaterialCommunityIcons
                 name="microsoft-teams"
                 size={size}
