@@ -11,6 +11,9 @@ import firebase from '../config/firebaseConfig';
 import config from "../config/config";
 
 class StartScreen extends Component {
+  state = {
+    quote: null,
+  }
   componentDidMount() {
     firebase
       .database()
@@ -21,11 +24,9 @@ class StartScreen extends Component {
         if (snapshot.exists()) {
           var data = [];
           snapshot.forEach(entry => { data.push(entry) });
-          this.setState({ quotes: data });
-
-          const quotesNumber = this.state.quotes.length
-          const randomQuote = Math.floor(Math.random() * quotesNumber)
-          console.log(this.state.quotes[randomQuote])
+          const quotesNumber = data.length;
+          const randomQuote = Math.floor(Math.random() * quotesNumber);
+          this.setState({ quote: JSON.stringify(data[randomQuote]) });
         }
       });
   }
@@ -35,12 +36,12 @@ class StartScreen extends Component {
     return (
       <ImageBackground
         style={styles.background}
-        source={require("../assets/belval.jpg")}
+        source={require("../assets/MainScreenBackground.jpg")}
       >
-        <Image
+        {/* <Image
           style={styles.logo}
           source={require("../assets/esch2022.jpg")}
-        ></Image>
+        ></Image> */}
 
         {/* When start button pressed, remove this page from stack navigator and go to main page */}
         <Pressable
@@ -57,8 +58,9 @@ class StartScreen extends Component {
           style={styles.button}
           android_ripple={{ color: config.START_BUTTON_RIPPLE_COLOR }}
         >
-          <Text style={{ alignSelf: "center" }}>Start!!</Text>
+          <Text style={styles.textButton}>Explore</Text>
         </Pressable>
+        <Text style={styles.introduction}>{this.state.quote}</Text>
       </ImageBackground>
     );
   }
@@ -68,19 +70,36 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     alignContent: "center",
+    width: "100%",
   },
   button: {
     backgroundColor: config.START_BUTTON_BG_COLOR,
-    borderRadius: 8,
+    borderRadius: 20,
     position: "absolute",
     alignSelf: "center",
-    width: "70%",
-    bottom: 70,
-    padding: 10,
+    width: "50%",
+    bottom: "16%",
+    padding: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    borderWidth: 2,
+    borderColor: "#ffff",
   },
-  logo: {
-    height: "33%",
-    width: "100%",
+  textButton: {
+    alignSelf: "center",
+    color: "#ffff",
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+  introduction: {
+    position: "absolute",
+    alignSelf: "center",
+    bottom: "40%",
+    // alignContent: "center",
+    // justifyContent: "center",
+    padding: 10,
+    color: "white",
+    fontSize: 40,
   },
 });
 

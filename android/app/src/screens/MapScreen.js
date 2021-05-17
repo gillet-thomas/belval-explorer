@@ -1,6 +1,5 @@
-/* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
-import { Platform, View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker, AnimatedRegion, Callout } from 'react-native-maps';
 import WaypointModal from '../components/Modal';
 import DrawerButton from '../components/DrawerButton';
