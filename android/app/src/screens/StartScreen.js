@@ -38,10 +38,11 @@ class StartScreen extends Component {
         style={styles.background}
         source={require("../assets/MainScreenBackground.jpg")}
       >
-        {/* <Image
+        <Image
           style={styles.logo}
-          source={require("../assets/esch2022.jpg")}
-        ></Image> */}
+          source={require("../assets/logo.png")}
+        ></Image>
+
 
         {/* When start button pressed, remove this page from stack navigator and go to main page */}
         <Pressable
@@ -95,12 +96,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignSelf: "center",
     bottom: "40%",
-    // alignContent: "center",
-    // justifyContent: "center",
     padding: 10,
     color: "white",
     fontSize: 40,
   },
+  logo: {
+    position: "absolute",
+    alignSelf: "center",
+    height: "30%"
+  }
 });
 
 export default StartScreen;

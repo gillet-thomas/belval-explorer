@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import React, { Component } from 'react';
+import { View, StyleSheet, Image } from 'react-native';
 import MapView, {
   PROVIDER_GOOGLE,
   Marker,
@@ -11,8 +11,8 @@ import DrawerButton from '../components/DrawerButton';
 
 import firebase from '../config/firebaseConfig';
 import GLOBAL from '../config/global.js';
-import DarkMode from '../assets/darkmode.json';
-import {Appearance} from 'react-native';
+import DarkMode from '../config/darkmode.json';
+import { Appearance } from 'react-native';
 
 navigator.geolocation = require('@react-native-community/geolocation');
 
@@ -85,11 +85,11 @@ class MapScreen extends Component {
             this.setState({
               isVisible: [
                 ...this.state.isVisible,
-                {key: entry.key, value: false},
+                { key: entry.key, value: false },
               ],
             });
           });
-          this.setState({waypoints: data});
+          this.setState({ waypoints: data });
           // console.log(this.state.waypoints);
         }
       });
@@ -101,7 +101,7 @@ class MapScreen extends Component {
       .child('initialRegion')
       .get()
       .then(snapshot => {
-        this.setState({initialRegion: snapshot.val()});
+        this.setState({ initialRegion: snapshot.val() });
       });
   }
   componentWillUnmount() {
@@ -135,16 +135,12 @@ class MapScreen extends Component {
     switch (category) {
       case 'art':
         return '#FF8359';
-        break;
       case 'culture':
         return '#00FFFF';
-        break;
       case 'science':
         return '#33FF99';
-        break;
       default:
         return '#000000';
-        break;
     }
   }
 
@@ -196,13 +192,13 @@ class MapScreen extends Component {
             }}
             coordinate={this.state.coordinate}>
             <Image
-              source={{uri: 'custom_pin'}}
-              style={{height: 15, width: 15}}
+              source={{ uri: 'custom_pin' }}
+              style={{ height: 15, width: 15 }}
             />
           </Marker.Animated>
         </MapView>
         <DrawerButton
-          style={{top: 20, left: 40}}
+          style={{ top: 20, left: 40 }}
           navigation={this.props.navigation}
         />
       </View>
