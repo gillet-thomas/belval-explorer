@@ -11,6 +11,8 @@ import DrawerButton from '../components/DrawerButton';
 
 import firebase from '../config/firebaseConfig';
 import GLOBAL from '../config/global.js';
+import DarkMode from '../assets/darkmode.json';
+import {Appearance} from 'react-native';
 
 navigator.geolocation = require('@react-native-community/geolocation');
 
@@ -183,7 +185,10 @@ class MapScreen extends Component {
           showUserLocation
           followUserLocation
           loadingEnabled
-          region={this.getMapRegion()}>
+          region={this.getMapRegion()}
+          customMapStyle={
+            Appearance.getColorScheme() === 'dark' ? DarkMode : []
+          }>
           {waypoints()}
           <Marker.Animated
             ref={marker => {
