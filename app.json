@@ -1,4 +1,5 @@
 {
   "name": "locationTracking",
-  "displayName": "locationTracking"
+  "displayName": "locationTracking",
+  "android": {"userInterfaceStyle" : "automatic"}
 }

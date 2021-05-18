@@ -52,6 +52,7 @@ class Drawer extends Component {
             <DrawerItemList {...props} />
             <DrawerItem
               label="Art"
+              labelStyle={{color: 'black'}}
               style={
                 this.state.artStatus
                   ? styles.artToggledON
@@ -64,6 +65,7 @@ class Drawer extends Component {
             />
             <DrawerItem
               label="Culture"
+              labelStyle={{color: 'black'}}
               style={
                 this.state.cultureStatus
                   ? styles.cultureToggledON
@@ -78,6 +80,7 @@ class Drawer extends Component {
             />
             <DrawerItem
               label="Science"
+              labelStyle={{color: 'black'}}
               style={
                 this.state.scienceStatus
                   ? styles.scienceToggledON
