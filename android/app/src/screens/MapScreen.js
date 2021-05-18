@@ -1,6 +1,11 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Image } from 'react-native';
-import MapView, { PROVIDER_GOOGLE, Marker, AnimatedRegion, Callout } from 'react-native-maps';
+import React, {Component} from 'react';
+import {View, StyleSheet, Image} from 'react-native';
+import MapView, {
+  PROVIDER_GOOGLE,
+  Marker,
+  AnimatedRegion,
+  Callout,
+} from 'react-native-maps';
 import WaypointModal from '../components/Modal';
 import DrawerButton from '../components/DrawerButton';
 
@@ -15,7 +20,6 @@ const LATITUDE = 49.503271;
 const LONGITUDE = 5.948635;
 
 class MapScreen extends Component {
-
   constructor(props) {
     super(props);
 
@@ -60,33 +64,43 @@ class MapScreen extends Component {
     });
 
     //Get the waypoints positions from the database
-    firebase.database().ref().child('waypoints').get().then(snapshot => {
-      if (snapshot.exists()) {
-        var data = [];
-        snapshot.forEach(entry => {
-          data.push({
-            key: entry.key,
-            coordinates: snapshot.child(entry.key).child('coordinates').val(),
-            modal: snapshot.child(entry.key).child('modal').val(),
-            title: snapshot.child(entry.key).child('title').val(),
-            category: snapshot.child(entry.key).child('category').val(),
+    firebase
+      .database()
+      .ref()
+      .child('waypoints')
+      .get()
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          var data = [];
+          snapshot.forEach(entry => {
+            data.push({
+              key: entry.key,
+              coordinates: snapshot.child(entry.key).child('coordinates').val(),
+              modal: snapshot.child(entry.key).child('modal').val(),
+              title: snapshot.child(entry.key).child('title').val(),
+              category: snapshot.child(entry.key).child('category').val(),
+            });
+            this.setState({
+              isVisible: [
+                ...this.state.isVisible,
+                {key: entry.key, value: false},
+              ],
+            });
           });
-          this.setState({
-            isVisible: [
-              ...this.state.isVisible,
-              { key: entry.key, value: false },
-            ],
-          });
-        });
-        this.setState({ waypoints: data });
-        // console.log(this.state.waypoints);
-      }
-    });
+          this.setState({waypoints: data});
+          // console.log(this.state.waypoints);
+        }
+      });
 
     //Get intial region from the database
-    firebase.database().ref().child('initialRegion').get().then(snapshot => {
-      this.setState({ initialRegion: snapshot.val() });
-    });
+    firebase
+      .database()
+      .ref()
+      .child('initialRegion')
+      .get()
+      .then(snapshot => {
+        this.setState({initialRegion: snapshot.val()});
+      });
   }
   componentWillUnmount() {
     //navigator.geolocation.clearWatch(this.watchID);
@@ -96,7 +110,7 @@ class MapScreen extends Component {
     latitude: this.state.latitude,
     longitude: this.state.longitude,
     latitudeDelta: LATITUDE_DELTA,
-    longitudeDelta: LONGITUDE_DELTA
+    longitudeDelta: LONGITUDE_DELTA,
   });
 
   displayModal(state, componentKey) {
@@ -117,17 +131,17 @@ class MapScreen extends Component {
 
   markerColor(category) {
     switch (category) {
-      case "art":
-        return "red";
+      case 'art':
+        return '#FF8359';
         break;
-      case "culture":
-        return "orange";
+      case 'culture':
+        return '#00FFFF';
         break;
-      case "science":
-        return "lightblue";
+      case 'science':
+        return '#33FF99';
         break;
       default:
-        return "#000000";
+        return '#000000';
         break;
     }
   }
@@ -136,7 +150,6 @@ class MapScreen extends Component {
     const waypoints = () => {
       if (this.state.waypoints) {
         return this.state.waypoints.map((waypoint, index) => {
-
           //If the waypoint category is toggled
           if (this.state[waypoint.category]) {
             return (
@@ -148,7 +161,8 @@ class MapScreen extends Component {
                 <Callout>
                   <WaypointModal
                     isVisible={
-                      this.state.isVisible.find(x => x.key === waypoint.key).value
+                      this.state.isVisible.find(x => x.key === waypoint.key)
+                        .value
                     }
                     hideModal={() => this.displayModal(false, waypoint.key)}
                     title={waypoint.title}
@@ -169,18 +183,21 @@ class MapScreen extends Component {
           showUserLocation
           followUserLocation
           loadingEnabled
-          region={this.getMapRegion()}
-        >
+          region={this.getMapRegion()}>
           {waypoints()}
           <Marker.Animated
-            ref={marker => { this.marker = marker; }}
-            coordinate={this.state.coordinate}
-          >
-            <Image source={{ uri: 'custom_pin' }} style={{ height: 15, width: 15 }} />
+            ref={marker => {
+              this.marker = marker;
+            }}
+            coordinate={this.state.coordinate}>
+            <Image
+              source={{uri: 'custom_pin'}}
+              style={{height: 15, width: 15}}
+            />
           </Marker.Animated>
         </MapView>
         <DrawerButton
-          style={{ top: 20, left: 40 }}
+          style={{top: 20, left: 40}}
           navigation={this.props.navigation}
         />
       </View>
