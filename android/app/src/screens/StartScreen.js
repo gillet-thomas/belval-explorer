@@ -40,7 +40,7 @@ class StartScreen extends Component {
       >
         <Image
           style={styles.logo}
-          source={require("../assets/logo.png")}
+          source={require("../assets/logo_white.png")}
         ></Image>
 
 
@@ -61,7 +61,7 @@ class StartScreen extends Component {
         >
           <Text style={styles.textButton}>Explore</Text>
         </Pressable>
-        <Text style={styles.introduction}>{this.state.quote}</Text>
+        <Text style={styles.quote}>{this.state.quote}</Text>
       </ImageBackground>
     );
   }
@@ -92,18 +92,19 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
   },
-  introduction: {
+  quote: {
     position: "absolute",
     alignSelf: "center",
     bottom: "40%",
-    padding: 10,
+    padding: 20,
     color: "white",
     fontSize: 40,
   },
   logo: {
     position: "absolute",
     alignSelf: "center",
-    height: "30%"
+    height: "35%",
+    top: -40
   }
 });
 
