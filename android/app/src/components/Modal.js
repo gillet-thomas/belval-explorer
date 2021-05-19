@@ -7,6 +7,8 @@ import {
   Image,
   Modal,
   Alert,
+  View,
+  Appearance
 } from 'react-native';
 
 export default class MapScreen extends Component {
@@ -56,59 +58,61 @@ export default class MapScreen extends Component {
         animationType={'slide'}
         transparent={false}
         visible={this.props.isVisible}
-        style={styles.container}>
-        <Text style={styles.title}>{this.props.title}</Text>
+        style={[styles.container, { backgroundColor: "rgba(0,0,0,0.5)" }]}>
+        <View style={styles.view}>
+          <Text style={styles.title}>{this.props.title}</Text>
 
-        <Image
-          source={images[this.props.modal.image]}
-          style={styles.image}
-        />
+          <Image
+            source={images[this.props.modal.image]}
+            style={styles.image}
+          />
 
-        <TouchableHighlight
-          activeOpacity={0.9}
-          style={styles.appButtonContainer}>
-          <Text style={styles.appButtonText}>{this.props.modal.question}</Text>
-        </TouchableHighlight>
+          <TouchableHighlight
+            activeOpacity={0.9}
+            style={styles.questionContainer}>
+            <Text style={styles.question}>{this.props.modal.question}</Text>
+          </TouchableHighlight>
 
-        <TouchableOpacity
-          activeOpacity={0.9}
-          style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor1 }]}
-          onPress={() => {
-            this.checkValidity(1);
-            this.displayInformation();
-          }}>
-          <Text style={styles.appButtonTextAnswer}>
-            {this.props.modal.answers[1]}
+          <TouchableOpacity
+            activeOpacity={0.9}
+            style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor1 }]}
+            onPress={() => {
+              this.checkValidity(1);
+              this.displayInformation();
+            }}>
+            <Text style={styles.appButtonTextAnswer}>
+              {this.props.modal.answers[1]}
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.9}
+            style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor2 }]}
+            onPress={() => {
+              this.checkValidity(2);
+              this.displayInformation();
+            }}>
+            <Text style={styles.appButtonTextAnswer}>
+              {this.props.modal.answers[2]}
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.9}
+            style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor3 }]}
+            onPress={() => {
+              this.checkValidity(3);
+              this.displayInformation();
+            }}>
+            <Text style={styles.appButtonTextAnswer}>
+              {this.props.modal.answers[3]}
+            </Text>
+          </TouchableOpacity>
+
+          <Text style={styles.closeText} onPress={this.props.hideModal}>
+            Exit
           </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          activeOpacity={0.9}
-          style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor2 }]}
-          onPress={() => {
-            this.checkValidity(2);
-            this.displayInformation();
-          }}>
-          <Text style={styles.appButtonTextAnswer}>
-            {this.props.modal.answers[2]}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          activeOpacity={0.9}
-          style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor3 }]}
-          onPress={() => {
-            this.checkValidity(3);
-            this.displayInformation();
-          }}>
-          <Text style={styles.appButtonTextAnswer}>
-            {this.props.modal.answers[3]}
-          </Text>
-        </TouchableOpacity>
-
-        <Text style={styles.closeText} onPress={this.props.hideModal}>
-          Exit
-        </Text>
+        </View>
       </Modal>
     );
   }
@@ -120,6 +124,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0.7)',
   },
   button: {
     display: 'flex',
@@ -143,7 +148,7 @@ const styles = StyleSheet.create({
   },
   image: {
     marginTop: '5%',
-    marginBottom: '30%',
+    marginBottom: '25%',
     width: '100%',
     height: '35%',
   },
@@ -158,8 +163,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: '5%',
     fontWeight: 'bold',
+    color: Appearance.getColorScheme() === 'dark' ? 'white' : 'blue'
   },
-  appButtonContainer: {
+  questionContainer: {
     elevation: 30,
     backgroundColor: '#009688',
     borderRadius: 10,
@@ -168,8 +174,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 30,
     marginTop: -80,
-    marginLeft: 40,
-    marginRight: 40,
+    marginLeft: 30,
+    marginRight: 30,
   },
   buttonAnswer: {
     elevation: 30,
@@ -183,7 +189,7 @@ const styles = StyleSheet.create({
     marginRight: 100,
     borderColor: 'black',
   },
-  appButtonText: {
+  question: {
     fontSize: 18,
     color: '#fff',
     fontWeight: 'bold',
@@ -203,5 +209,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textDecorationLine: 'underline',
+    color: Appearance.getColorScheme() === 'dark' ? 'white' : 'black'
   },
+  view: {
+    flex: 1,
+    backgroundColor: Appearance.getColorScheme() === 'dark' ? '#2f3948' : 'white'
+  }
 });
