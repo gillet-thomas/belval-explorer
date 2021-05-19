@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Linking } from 'react-native';
 import AboutMapButton from '../components/AboutMapButton';
 
 import config from '../config/config';
@@ -17,20 +17,21 @@ class AboutScreen extends Component {
         <Text style={styles.contact}>
           If you have any questions, please find our email addresses below.
         </Text>
-        <Text style={{fontWeight: 'bold'}}>
+        <Text style={{ fontWeight: 'bold' }}>
           {'\u2022 ' + config.EMAIL_RAYAN}
         </Text>
-        <Text style={{fontWeight: 'bold'}}>
+        <Text style={{ fontWeight: 'bold' }}>
           {'\u2022 ' + config.EMAIL_HUGO}
         </Text>
-        <Text style={{fontWeight: 'bold'}}>
+        <Text style={{ fontWeight: 'bold' }}>
           {'\u2022 ' + config.EMAIL_GILLES}
         </Text>
-        <Text style={{fontWeight: 'bold'}}>
+        <Text style={{ fontWeight: 'bold' }}>
           {'\u2022 ' + config.EMAIL_THOMAS}
         </Text>
+        <Text style={styles.link} onPress={() => Linking.openURL('https://esch2022.lu/en/')}>Esch2022 event</Text>
         <AboutMapButton
-          style={{top: 20, left: 40}}
+          style={{ top: 20, left: 40 }}
           navigation={this.props.navigation}
         />
       </View>
@@ -56,6 +57,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     paddingBottom: 5,
+  },
+  link: {
+    color: "blue",
+    fontSize: 20,
+    paddingTop: 20,
+    textDecorationLine: 'underline'
   },
   title: {
     fontSize: 30,
