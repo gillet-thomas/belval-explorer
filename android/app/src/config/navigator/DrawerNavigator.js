@@ -5,12 +5,12 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-import Navigation from '../config/Navigation';
-import About from '../screens/AboutScreen';
+import StackNavigator from './StackNavigator';
+import About from '../../screens/AboutScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {StyleSheet} from 'react-native';
 
-import GLOBAL from '../config/global.js';
+import GLOBAL from '../global.js';
 
 class Drawer extends Component {
   state = {
@@ -97,7 +97,7 @@ class Drawer extends Component {
         )}>
         <this.state.drawer.Screen
           name="Map"
-          component={Navigation}
+          component={StackNavigator}
           options={{
             swipeEnabled: false,
             drawerLabel: 'Belval Navigator',

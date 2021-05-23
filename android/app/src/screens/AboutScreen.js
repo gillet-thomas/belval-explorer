@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Linking, Image} from 'react-native';
 import AboutMapButton from '../components/AboutMapButton';
 
-import config from '../config/config';
-
 class AboutScreen extends Component {
   render() {
     return (
@@ -21,16 +19,16 @@ class AboutScreen extends Component {
           If you have any questions, please find our email addresses below.
         </Text>
         <Text style={{fontWeight: 'bold'}}>
-          {'\u2022 ' + config.EMAIL_RAYAN}
+          {'\u2022 ' + 'rayan.rafdy@gmail.com'}
         </Text>
         <Text style={{fontWeight: 'bold'}}>
-          {'\u2022 ' + config.EMAIL_HUGO}
+          {'\u2022 ' + 'hugo.cossa@hotmail.fr'}
         </Text>
         <Text style={{fontWeight: 'bold'}}>
-          {'\u2022 ' + config.EMAIL_GILLES}
+          {'\u2022 ' + 'gilchen96@gmail.com'}
         </Text>
         <Text style={{fontWeight: 'bold'}}>
-          {'\u2022 ' + config.EMAIL_THOMAS}
+          {'\u2022 ' + 'gillet.thomas43@gmail.com'}
         </Text>
         <Text
           style={styles.link}
@@ -47,7 +45,6 @@ class AboutScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  logo: {},
   about: {
     width: '80%',
     paddingBottom: 30,
@@ -58,7 +55,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: config.ABOUT_PAGE_BACKGROUND_COLOR,
+    backgroundColor: 'lightgray',
   },
   contact: {
     width: '80%',

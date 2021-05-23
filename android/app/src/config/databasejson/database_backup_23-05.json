@@ -1,0 +1,164 @@
+{
+  "initialRegion" : {
+    "latitude" : 49.503271,
+    "latitudeDelta" : 0.005,
+    "longitude" : 5.948635,
+    "longitudeDelta" : 0.004
+  },
+  "quotes" : [ "Belval is great", "Belval represents the future!", "where students meet opportunities", "I met my wife here", "The campus is a great place for culture and science", "Belval is a place of innovation" ],
+  "waypoints" : [ {
+    "category" : "culture",
+    "coordinates" : {
+      "latitude" : 49.502443396523816,
+      "longitude" : 5.947769126235522
+    },
+    "modal" : {
+      "answers" : [ null, "2018", "2017", "2015" ],
+      "correctAnswer" : 1,
+      "image" : "llc",
+      "information" : "The Luxembourg Learning Center is part of the university campus. The colleagues of the Library of the University together with Valentiny HVP have designed a place that support and inspire anyone in their search for information. Its exceptional architecture offers a comfortable environment.",
+      "question" : "When did the LLC open?"
+    },
+    "title" : "LLC"
+  }, {
+    "category" : "science",
+    "coordinates" : {
+      "latitude" : 49.504018157276604,
+      "longitude" : 5.949958824386077
+    },
+    "modal" : {
+      "answers" : [ null, "500", "1000", "750" ],
+      "correctAnswer" : 3,
+      "image" : "msa",
+      "information" : "This building has been designed by the architects Baumschlager & Eberle in collaboration with Christian Bauer. The lecture halls are in a block and the entire administration of the university with the rector’s office and enrollment office are in the tower.",
+      "question" : "How many seats are in the conference center inside the Maison du Savoir?"
+    },
+    "title" : "Maison du Savoir"
+  }, {
+    "category" : "culture",
+    "coordinates" : {
+      "latitude" : 49.50380038896984,
+      "longitude" : 5.94929363641326
+    },
+    "modal" : {
+      "answers" : [ null, "6,50 euros", "5 euros", "4,60 euros" ],
+      "correctAnswer" : 3,
+      "image" : "foodhouse",
+      "information" : "Food House is the main restaurant of the university. It has an underground passage connected to the Maison du Savoir!",
+      "question" : "What is the price of a full menu for a student? (starter, main course, dessert)"
+    },
+    "title" : "Food House"
+  }, {
+    "category" : "culture",
+    "coordinates" : {
+      "latitude" : 49.503869822971815,
+      "longitude" : 5.946920606678772
+    },
+    "modal" : {
+      "answers" : [ null, "132", "254", "100" ],
+      "correctAnswer" : 2,
+      "image" : "foodlab",
+      "information" : "Did you know: 3 separate rooms have been set up on the second floor, each with ten seats that can be used for group work!",
+      "question" : "How many seats are inside the Food Lab?"
+    },
+    "title" : "Food Lab"
+  }, {
+    "category" : "art",
+    "coordinates" : {
+      "latitude" : 49.50393772651125,
+      "longitude" : 5.948463220728944
+    },
+    "modal" : {
+      "answers" : [ null, "50.000 m3", "105.000 m3", "200.000 m3" ],
+      "correctAnswer" : 2,
+      "image" : "maisonartetudiants",
+      "information" : "The architecture has been done by 'Witry & Witry architecture urbanisme'. Intended to host shows, but also concerts, exhibitions and other socio-cultural events, the large multifunctional hall is the major element of this building",
+      "question" : "What is the volume of the building?"
+    },
+    "title" : "Maison des arts et des étudiants"
+  }, {
+    "category" : "culture",
+    "coordinates" : {
+      "latitude" : 49.50014203090972,
+      "longitude" : 5.947554845235139
+    },
+    "modal" : {
+      "answers" : [ null, "50", "500", "203" ],
+      "correctAnswer" : 3,
+      "image" : "rockhal",
+      "information" : "The Rockhal is part of a vast program launched in 1995, the year in which Luxembourg became the European Capital of Culture for the first time. It is a place for performances, artistic practices, creation, meetings, exchanges, and reflection.",
+      "question" : "How many events have been hosted in the Rockhal in 2019?"
+    },
+    "title" : "Rockhal"
+  }, {
+    "category" : "science",
+    "coordinates" : {
+      "latitude" : 49.50191591977704,
+      "longitude" : 5.949033141667288
+    },
+    "modal" : {
+      "answers" : [ null, "2015", "2008", "2021" ],
+      "correctAnswer" : 1,
+      "image" : "list",
+      "information" : "'The Luxembourg Institute of Science and Technology (LIST) is a mission-driven Research and Technology Organisation (RTO) active in the fields of materials, environment and IT' (www.list.lu)",
+      "question" : "When did LIST move to Belval?"
+    },
+    "title" : "LIST"
+  }, {
+    "category" : "culture",
+    "coordinates" : {
+      "latitude" : 49.501972025022916,
+      "longitude" : 5.943010026322676
+    },
+    "modal" : {
+      "answers" : [ null, "2000", "1995", "2009" ],
+      "correctAnswer" : 3,
+      "image" : "lcsb",
+      "information" : "The LCSB is accelerating biomedical research by closing the link between systems biology and medical research. Collaboration between biologists, medical doctors, computer scientists, physicists, engineers and mathematicians are offering new insights in complex systems like cells, organs, and organisms. The LCSB moved into its new building on Campus Belval in September 2011 in the House of Biohealth, and in 2014 into Biotech II.",
+      "question" : "When was the LCSB established?"
+    },
+    "title" : "LCSB"
+  }, {
+    "category" : "culture",
+    "coordinates" : {
+      "latitude" : 49.501300191740555,
+      "longitude" : 5.9481241854912055
+    },
+    "modal" : {
+      "answers" : [ null, "300", "180", "250" ],
+      "correctAnswer" : 2,
+      "image" : "hautsfourneaux",
+      "information" : "‘Les Haut fourneaux de Belval’ is a tourist and cultural highlight. Some of the furnace an accessible up to a height of 40 meters. From there you can enjoy a breathtaking view of the new quarters of Belval.",
+      "question" : "How many stairs to reach a height of 40 meters?"
+    },
+    "title" : "Haut fourneaux de Belval"
+  }, {
+    "category" : "culture",
+    "coordinates" : {
+      "latitude" : 49.500503650908996,
+      "longitude" : 5.945760785557522
+    },
+    "modal" : {
+      "answers" : [ null, "1600", "500", "4000" ],
+      "correctAnswer" : 1,
+      "image" : "belvalplaza",
+      "information" : "Belval Plaza offers an attractive range of activities. 40 shops, 7 restaurants, 1 concert venue, 1 cinema with 7 auditoriums, 1 fitness room.",
+      "question" : "How many parking spots are in the Belval Plaza?"
+    },
+    "title" : "Belval Plaza"
+  }, {
+    "category" : "science",
+    "coordinates" : {
+      "latitude" : 49.50369530674746,
+      "longitude" : 5.947850698143548
+    },
+    "modal" : {
+      "answers" : [ null, "True", "False", "3,14159265" ],
+      "correctAnswer" : 1,
+      "image" : "maisonnombre",
+      "information" : "La Maison du Nombre is for teachers and researchers in the fields of mathematics and computer science.",
+      "question" : "You can play chess in the entrance"
+    },
+    "title" : "Maison du Nombre"
+  } ]
+}

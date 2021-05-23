@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Text,
   StyleSheet,
@@ -8,7 +8,7 @@ import {
   Modal,
   Alert,
   View,
-  Appearance
+  Appearance,
 } from 'react-native';
 
 export default class MapScreen extends Component {
@@ -21,18 +21,18 @@ export default class MapScreen extends Component {
 
   displayInformation() {
     Alert.alert('Did you know ?', this.props.modal.information, [
-      { text: 'Close', style: 'Close' },
+      {text: 'Close', style: 'Close'},
     ]);
   }
 
   checkValidity(userInput) {
     if (this.state.answeredSubmitted == false) {
       //Display correct answer in green
-      this.setState({ ['bgColor' + this.props.modal.correctAnswer]: 'green' });
+      this.setState({['bgColor' + this.props.modal.correctAnswer]: 'green'});
 
       //If the user was wrong display his answer in red
       if (this.props.modal.correctAnswer !== userInput) {
-        this.setState({ ['bgColor' + userInput]: 'red' });
+        this.setState({['bgColor' + userInput]: 'red'});
       }
       this.state.answeredSubmitted = true;
     }
@@ -40,17 +40,17 @@ export default class MapScreen extends Component {
 
   render() {
     const images = {
-      llc: require("../assets/llc.jpg"),
-      msa: require("../assets/msa.jpg"),
-      foodhouse: require("../assets/foodhouse.jpg"),
-      maisonartetudiants: require("../assets/maisonartetudiants.jpg"),
-      foodlab: require("../assets/foodlab.jpg"),
-      rockhal: require("../assets/rockhal.jpg"),
-      list: require("../assets/list.jpg"),
-      lcsb: require("../assets/lcsb.jpg"),
-      hautsfourneaux: require("../assets/hautsfourneaux.jpg"),
-      belvalplaza: require("../assets/belvalplaza.jpg"),
-      maisonnombre: require("../assets/maisonnombre.jpg"),
+      llc: require('../assets/llc.jpg'),
+      msa: require('../assets/msa.jpg'),
+      foodhouse: require('../assets/foodhouse.jpg'),
+      maisonartetudiants: require('../assets/maisonartetudiants.jpg'),
+      foodlab: require('../assets/foodlab.jpg'),
+      rockhal: require('../assets/rockhal.jpg'),
+      list: require('../assets/list.jpg'),
+      lcsb: require('../assets/lcsb.jpg'),
+      hautsfourneaux: require('../assets/hautsfourneaux.jpg'),
+      belvalplaza: require('../assets/belvalplaza.jpg'),
+      maisonnombre: require('../assets/maisonnombre.jpg'),
     };
 
     return (
@@ -58,14 +58,11 @@ export default class MapScreen extends Component {
         animationType={'slide'}
         transparent={false}
         visible={this.props.isVisible}
-        style={[styles.container, { backgroundColor: "rgba(0,0,0,0.5)" }]}>
+        style={[styles.container, {backgroundColor: 'rgba(0,0,0,0.5)'}]}>
         <View style={styles.view}>
           <Text style={styles.title}>{this.props.title}</Text>
 
-          <Image
-            source={images[this.props.modal.image]}
-            style={styles.image}
-          />
+          <Image source={images[this.props.modal.image]} style={styles.image} />
 
           <TouchableHighlight
             activeOpacity={0.9}
@@ -75,7 +72,10 @@ export default class MapScreen extends Component {
 
           <TouchableOpacity
             activeOpacity={0.9}
-            style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor1 }]}
+            style={[
+              styles.buttonAnswer,
+              {backgroundColor: this.state.bgColor1},
+            ]}
             onPress={() => {
               this.checkValidity(1);
               this.displayInformation();
@@ -87,7 +87,10 @@ export default class MapScreen extends Component {
 
           <TouchableOpacity
             activeOpacity={0.9}
-            style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor2 }]}
+            style={[
+              styles.buttonAnswer,
+              {backgroundColor: this.state.bgColor2},
+            ]}
             onPress={() => {
               this.checkValidity(2);
               this.displayInformation();
@@ -99,7 +102,10 @@ export default class MapScreen extends Component {
 
           <TouchableOpacity
             activeOpacity={0.9}
-            style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor3 }]}
+            style={[
+              styles.buttonAnswer,
+              {backgroundColor: this.state.bgColor3},
+            ]}
             onPress={() => {
               this.checkValidity(3);
               this.displayInformation();
@@ -163,7 +169,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: '5%',
     fontWeight: 'bold',
-    color: Appearance.getColorScheme() === 'dark' ? 'white' : 'blue'
+    color: Appearance.getColorScheme() === 'dark' ? 'white' : 'blue',
   },
   questionContainer: {
     elevation: 30,
@@ -209,10 +215,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textDecorationLine: 'underline',
-    color: Appearance.getColorScheme() === 'dark' ? 'white' : 'black'
+    color: Appearance.getColorScheme() === 'dark' ? 'white' : 'black',
   },
   view: {
     flex: 1,
-    backgroundColor: Appearance.getColorScheme() === 'dark' ? '#2f3948' : 'white'
-  }
+    backgroundColor:
+      Appearance.getColorScheme() === 'dark' ? '#2f3948' : 'white',
+  },
 });
