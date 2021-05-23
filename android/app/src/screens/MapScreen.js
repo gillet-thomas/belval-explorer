@@ -106,7 +106,7 @@ class MapScreen extends Component {
         console.error(error);
       });
   }
-
+  //Function used to initialize the map location
   getMapRegion = () => ({
     latitude: this.state.latitude,
     longitude: this.state.longitude,

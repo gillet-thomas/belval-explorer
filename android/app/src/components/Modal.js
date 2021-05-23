@@ -34,6 +34,7 @@ export default class MapScreen extends Component {
       if (this.props.modal.correctAnswer !== userInput) {
         this.setState({ ['bgColor' + userInput]: 'red' });
       }
+      //Set answered status to true so that question can't be answered again
       this.state.answeredSubmitted = true;
     }
   }
