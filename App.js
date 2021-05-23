@@ -1,9 +1,8 @@
-import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
+import { Appearance } from 'react-native';
+import { AppearanceProvider } from 'react-native-appearance';
+import { DefaultTheme, DarkTheme, NavigationContainer } from '@react-navigation/native';
 import Drawer from './android/app/src/config/navigator/DrawerNavigator';
-import {DefaultTheme, DarkTheme} from '@react-navigation/native';
-import {Appearance} from 'react-native';
 
 export default function App() {
   return (

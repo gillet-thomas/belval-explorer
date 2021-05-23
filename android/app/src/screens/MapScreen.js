@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Appearance } from 'react-native';
 import MapView, {
   PROVIDER_GOOGLE,
   Marker,
@@ -10,9 +10,8 @@ import WaypointModal from '../components/Modal';
 import DrawerButton from '../components/DrawerButton';
 
 import firebase from '../config/firebaseConfig';
-import GLOBAL from '../config/global.js';
 import DarkMode from '../config/darkmode.json';
-import { Appearance } from 'react-native';
+import GLOBAL from '../config/global.js';
 
 navigator.geolocation = require('@react-native-community/geolocation');
 
@@ -83,15 +82,15 @@ class MapScreen extends Component {
               category: snapshot.child(entry.key).child('category').val(),
             });
             this.setState({
-              isVisible: [
-                ...this.state.isVisible,
-                { key: entry.key, value: false },
-              ],
+              isVisible: [...this.state.isVisible, { key: entry.key, value: false }],
             });
           });
           this.setState({ waypoints: data });
           // console.log(this.state.waypoints);
         }
+      })
+      .catch(error => {
+        console.error(error);
       });
 
     //Get intial region from the database
@@ -102,10 +101,10 @@ class MapScreen extends Component {
       .get()
       .then(snapshot => {
         this.setState({ initialRegion: snapshot.val() });
+      })
+      .catch(error => {
+        console.error(error);
       });
-  }
-  componentWillUnmount() {
-    //navigator.geolocation.clearWatch(this.watchID);
   }
 
   getMapRegion = () => ({
@@ -159,8 +158,7 @@ class MapScreen extends Component {
                 <Callout>
                   <WaypointModal
                     isVisible={
-                      this.state.isVisible.find(x => x.key === waypoint.key)
-                        .value
+                      this.state.isVisible.find(x => x.key === waypoint.key).value
                     }
                     hideModal={() => this.displayModal(false, waypoint.key)}
                     title={waypoint.title}
@@ -182,14 +180,11 @@ class MapScreen extends Component {
           followUserLocation
           loadingEnabled
           region={this.getMapRegion()}
-          customMapStyle={
-            Appearance.getColorScheme() === 'dark' ? DarkMode : []
-          }>
+          customMapStyle={Appearance.getColorScheme() === 'dark' ? DarkMode : []}>
+
           {waypoints()}
           <Marker.Animated
-            ref={marker => {
-              this.marker = marker;
-            }}
+            ref={marker => { this.marker = marker; }}
             coordinate={this.state.coordinate}>
             <Image
               source={{ uri: 'custom_pin' }}

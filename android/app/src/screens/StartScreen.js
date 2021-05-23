@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   ImageBackground,
   Image,
   Text,
   Pressable,
+  LogBox,
 } from 'react-native';
 
 import firebase from '../config/firebaseConfig';
-import {LogBox} from 'react-native';
 
 LogBox.ignoreLogs(['Setting a timer']);
 
@@ -30,7 +30,7 @@ class StartScreen extends Component {
           });
           const quotesNumber = data.length;
           const randomQuote = Math.floor(Math.random() * quotesNumber);
-          this.setState({quote: JSON.stringify(data[randomQuote])});
+          this.setState({ quote: JSON.stringify(data[randomQuote]) });
         }
       })
       .catch(error => {
@@ -39,7 +39,7 @@ class StartScreen extends Component {
   }
 
   render() {
-    const {navigation} = this.props;
+    const { navigation } = this.props;
     return (
       <ImageBackground
         style={styles.background}
@@ -61,7 +61,7 @@ class StartScreen extends Component {
             })
           }
           style={styles.button}
-          android_ripple={{color: '#191516'}}>
+          android_ripple={{ color: '#191516' }}>
           <Text style={styles.textButton}>Explore</Text>
         </Pressable>
         <Text style={styles.quote}>{this.state.quote}</Text>

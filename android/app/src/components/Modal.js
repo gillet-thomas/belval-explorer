@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   StyleSheet,
@@ -21,18 +21,18 @@ export default class MapScreen extends Component {
 
   displayInformation() {
     Alert.alert('Did you know ?', this.props.modal.information, [
-      {text: 'Close', style: 'Close'},
+      { text: 'Close', style: 'Close' },
     ]);
   }
 
   checkValidity(userInput) {
     if (this.state.answeredSubmitted == false) {
       //Display correct answer in green
-      this.setState({['bgColor' + this.props.modal.correctAnswer]: 'green'});
+      this.setState({ ['bgColor' + this.props.modal.correctAnswer]: 'green' });
 
       //If the user was wrong display his answer in red
       if (this.props.modal.correctAnswer !== userInput) {
-        this.setState({['bgColor' + userInput]: 'red'});
+        this.setState({ ['bgColor' + userInput]: 'red' });
       }
       this.state.answeredSubmitted = true;
     }
@@ -58,10 +58,10 @@ export default class MapScreen extends Component {
         animationType={'slide'}
         transparent={false}
         visible={this.props.isVisible}
-        style={[styles.container, {backgroundColor: 'rgba(0,0,0,0.5)'}]}>
+        style={[styles.container, { backgroundColor: 'rgba(0,0,0,0.5)' }]}>
         <View style={styles.view}>
-          <Text style={styles.title}>{this.props.title}</Text>
 
+          <Text style={styles.title}>{this.props.title}</Text>
           <Image source={images[this.props.modal.image]} style={styles.image} />
 
           <TouchableHighlight
@@ -72,52 +72,35 @@ export default class MapScreen extends Component {
 
           <TouchableOpacity
             activeOpacity={0.9}
-            style={[
-              styles.buttonAnswer,
-              {backgroundColor: this.state.bgColor1},
-            ]}
+            style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor1 }]}
             onPress={() => {
               this.checkValidity(1);
               this.displayInformation();
             }}>
-            <Text style={styles.appButtonTextAnswer}>
-              {this.props.modal.answers[1]}
-            </Text>
+            <Text style={styles.appButtonTextAnswer}>{this.props.modal.answers[1]}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             activeOpacity={0.9}
-            style={[
-              styles.buttonAnswer,
-              {backgroundColor: this.state.bgColor2},
-            ]}
+            style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor2 }]}
             onPress={() => {
               this.checkValidity(2);
               this.displayInformation();
             }}>
-            <Text style={styles.appButtonTextAnswer}>
-              {this.props.modal.answers[2]}
-            </Text>
+            <Text style={styles.appButtonTextAnswer}>{this.props.modal.answers[2]}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             activeOpacity={0.9}
-            style={[
-              styles.buttonAnswer,
-              {backgroundColor: this.state.bgColor3},
-            ]}
+            style={[styles.buttonAnswer, { backgroundColor: this.state.bgColor3 }]}
             onPress={() => {
               this.checkValidity(3);
               this.displayInformation();
             }}>
-            <Text style={styles.appButtonTextAnswer}>
-              {this.props.modal.answers[3]}
-            </Text>
+            <Text style={styles.appButtonTextAnswer}>{this.props.modal.answers[3]}</Text>
           </TouchableOpacity>
 
-          <Text style={styles.closeText} onPress={this.props.hideModal}>
-            Exit
-          </Text>
+          <Text style={styles.closeText} onPress={this.props.hideModal}>Exit</Text>
         </View>
       </Modal>
     );
@@ -132,44 +115,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(0,0,0,0.7)',
   },
-  button: {
-    display: 'flex',
-    height: 50,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    backgroundColor: '#2278FF',
-    shadowColor: '#2278FF',
-    shadowOpacity: 0.5,
-    shadowOffset: {
-      height: 10,
-      width: 0,
-    },
-    shadowRadius: 25,
-  },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 25,
-  },
   image: {
     marginTop: '5%',
     marginBottom: '25%',
     width: '100%',
     height: '35%',
-  },
-  question: {
-    fontSize: 24,
-    marginBottom: '0%',
-    padding: 40,
-  },
-  closeText: {
-    fontSize: 18,
-    color: '#00479e',
-    textAlign: 'center',
-    marginTop: '5%',
-    fontWeight: 'bold',
-    color: Appearance.getColorScheme() === 'dark' ? 'white' : 'blue',
   },
   questionContainer: {
     elevation: 30,
@@ -183,6 +133,21 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
   },
+  question: {
+    fontSize: 18,
+    marginBottom: '0%',
+    color: '#fff',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    textTransform: 'uppercase',
+  },
+  closeText: {
+    fontSize: 18,
+    textAlign: 'center',
+    marginTop: '5%',
+    fontWeight: 'bold',
+    color: Appearance.getColorScheme() === 'dark' ? 'white' : 'blue',
+  },
   buttonAnswer: {
     elevation: 30,
     borderRadius: 10,
@@ -194,13 +159,6 @@ const styles = StyleSheet.create({
     marginLeft: 100,
     marginRight: 100,
     borderColor: 'black',
-  },
-  question: {
-    fontSize: 18,
-    color: '#fff',
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    textTransform: 'uppercase',
   },
   appButtonTextAnswer: {
     fontSize: 20,
@@ -219,7 +177,6 @@ const styles = StyleSheet.create({
   },
   view: {
     flex: 1,
-    backgroundColor:
-      Appearance.getColorScheme() === 'dark' ? '#2f3948' : 'white',
+    backgroundColor: Appearance.getColorScheme() === 'dark' ? '#2f3948' : 'white',
   },
 });

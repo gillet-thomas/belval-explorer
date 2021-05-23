@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowColor: '#2a2a2a',
     shadowOpacity: 0.3,
-    shadowOffset: {height: 10},
+    shadowOffset: { height: 10 },
   },
   menu: {
     backgroundColor: '#474747',
