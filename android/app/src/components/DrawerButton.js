@@ -8,6 +8,9 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class DrawerButton extends React.Component {
+  /**
+  * Renders the Button. It's onPress function is using props to open the Drawer Navigator.
+  */
   render() {
     return (
       <View style={[styles.container, this.props.style]}>
