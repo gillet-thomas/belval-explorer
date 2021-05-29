@@ -19,12 +19,20 @@ export default class MapScreen extends Component {
     answeredSubmitted: false,
   };
 
+  /**
+   * Display further information on the waypoint
+   */
   displayInformation() {
     Alert.alert('Did you know ?', this.props.modal.information, [
       { text: 'Close', style: 'Close' },
     ]);
   }
 
+  /**
+   * Check whether the provided quiz answer is the correct one or not
+   * @param {int} userInput - The index of the user's answer
+   * @returns a list with the waypoints components
+   */
   checkValidity(userInput) {
     if (this.state.answeredSubmitted == false) {
       //Display correct answer in green
@@ -40,6 +48,9 @@ export default class MapScreen extends Component {
   }
 
   render() {
+    /**
+     * Associate each waypoint with its descriptive image
+     */
     const images = {
       llc: require('../assets/llc.jpg'),
       msa: require('../assets/msa.jpg'),
