@@ -19,7 +19,10 @@ class Drawer extends Component {
     cultureStatus: true,
     scienceStatus: true,
   };
-
+  
+  /**
+   * Toggle Art Boolean
+   */
   _onPressArt() {
     if (this.state.artStatus) {
       this.setState({artStatus: false});
@@ -28,6 +31,9 @@ class Drawer extends Component {
     }
   }
 
+  /**
+   * Toggle Culture Boolean
+   */
   _onPressCulture() {
     if (this.state.cultureStatus) {
       this.setState({cultureStatus: false});
@@ -36,6 +42,9 @@ class Drawer extends Component {
     }
   }
 
+  /**
+   * Toggle Science Boolean
+   */
   _onPressScience() {
     if (this.state.scienceStatus) {
       this.setState({scienceStatus: false});
@@ -44,6 +53,11 @@ class Drawer extends Component {
     }
   }
 
+  /**
+   * Render all Items inside the Drawer.
+   * Render all Screens to navigate to from the Drawer.
+   * @returns the Drawer
+   */
   render() {
     return (
       <this.state.drawer.Navigator
